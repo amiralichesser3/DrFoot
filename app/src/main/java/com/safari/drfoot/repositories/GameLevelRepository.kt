@@ -9,6 +9,11 @@ import javax.inject.Singleton
 
 @Singleton
 class GameLevelRepository @Inject constructor(private val gameLevelDao: GameLevelDao) {
+
+    fun exists(): Boolean {
+        return gameLevelDao.count() != 0
+    }
+
     fun load(): LiveData<List<GameLevel>> {
         return gameLevelDao.load()
     }

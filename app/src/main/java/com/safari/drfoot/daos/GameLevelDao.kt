@@ -17,4 +17,7 @@ interface GameLevelDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(gameLevels: ArrayList<GameLevel>)
+
+    @Query("SELECT COUNT(*) FROM GameLevel")
+    fun count(): Int
 }

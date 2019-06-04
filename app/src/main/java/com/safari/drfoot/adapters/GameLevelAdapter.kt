@@ -2,6 +2,7 @@ package com.safari.drfoot.adapters
 
 import android.app.Activity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -45,8 +46,11 @@ class GameLevelAdapter(private val context: Activity, private val mDataset: List
 
         if (content.isLocked) {
             holder.lock.visibility = View.VISIBLE
+            holder.title.setTextColor(ContextCompat.getColor(context, R.color.grey))
+
         } else {
             holder.lock.visibility = View.GONE
+            holder.title.setTextColor(ContextCompat.getColor(context, R.color.colorPrimary))
         }
 
         holder.root.setOnClickListener {

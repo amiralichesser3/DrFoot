@@ -18,7 +18,7 @@ class MainActivityViewModel @Inject constructor(private val gameLevelRepo: GameL
     private fun seedDatabase() {
         AsyncTask.execute {
             if (!gameLevelRepo.exists()) {
-                val gameLevels = arrayListOf(GameLevel(1, "Prevention", false, null),
+                val gameLevels = arrayListOf(GameLevel(1, "Prevention", false, "https://www.uottawa.ca/health/sites/www.uottawa.ca.health/files/icons/Icon---Chiropody---V2.png"),
                     GameLevel(2, "Examination", true, null),
                     GameLevel(3, "Detection", true, null),
                     GameLevel(4, "Healing", true, null),

@@ -12,16 +12,21 @@
             android:roundIcon="@drawable/ic_doctor"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".activities.Splash"
-        android:theme="@style/AppThemeNoActionBar">
+        <activity android:name=".activities.GameLevelActivity"
+                  android:theme="@style/AppThemeNoActionBar">
+        </activity>
+        <activity
+                android:name=".activities.Splash"
+                android:theme="@style/AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity"
-        android:theme="@style/AppThemeNoActionBar">
+        <activity
+                android:name=".activities.MainActivity"
+                android:theme="@style/AppThemeNoActionBar">
         </activity>
     </application>
 

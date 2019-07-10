@@ -12,8 +12,7 @@
             android:roundIcon="@drawable/ic_doctor"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".activities.ScenarioActivity"
-                  android:theme="@style/AppThemeNoActionBar">
+        <activity android:name=".activities.ScenarioActivity">
         </activity>
         <activity
                 android:name=".activities.GameLevelActivity"

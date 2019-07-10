@@ -4,4 +4,5 @@
     <dimen name="gamelevelsize">100dp</dimen>
     <dimen name="smallmargin">12dp</dimen>
     <dimen name="bigtext">16sp</dimen>
+    <dimen name="smalltext">12sp</dimen>
 </resources>

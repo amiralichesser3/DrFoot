@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:padding="@dimen/bigmargin"
         tools:context=".activities.ScenarioActivity">
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" app:srcCompat="@drawable/ic_doctor_48"
+            android:id="@+id/doctorImage" android:layout_alignParentRight="true" />
+            <LinearLayout android:id="@+id/topLinear" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="@dimen/smalltext" android:text="Timer"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="@dimen/bigtext" android:id="@+id/timerText" android:text="00:00"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="@dimen/smalltext" android:text="Score:"/>
+            </LinearLayout>
+        <FrameLayout android:id="@+id/fragmentContainer" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_below="@+id/topLinear" android:layout_marginTop="@dimen/smallmargin">
 
-</android.support.constraint.ConstraintLayout>
+        </FrameLayout>
+</RelativeLayout>

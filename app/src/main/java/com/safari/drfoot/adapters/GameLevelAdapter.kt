@@ -19,6 +19,7 @@ import com.safari.drfoot.activities.GameLevelActivity
 import com.safari.drfoot.entities.GameLevel
 
 const val GAMELEVEL_ID_KEY = "gameLevelId"
+const val CATEGORY_KEY = "categoryKey"
 
 class GameLevelAdapter(private val context: Activity, private val mDataset: List<GameLevel>)
     : RecyclerView.Adapter<GameLevelAdapter.ViewHolder>() {
@@ -60,6 +61,7 @@ class GameLevelAdapter(private val context: Activity, private val mDataset: List
             }
             val bundle = Bundle()
             bundle.putInt(GAMELEVEL_ID_KEY, content.id)
+            bundle.putString(CATEGORY_KEY, content.name)
             Navigator.withBundle(bundle).changeActivityFade(context, GameLevelActivity::class.java, false)
         }
     }

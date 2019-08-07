@@ -7,7 +7,10 @@
              android:layout_height="wrap_content">
     <FrameLayout android:layout_margin="@dimen/smallmargin" android:layout_width="wrap_content" android:layout_height="wrap_content">
         <ImageView android:layout_width="@dimen/gamelevelsize" android:layout_height="@dimen/gamelevelsize" android:scaleType="fitCenter" android:id="@+id/imageView"/>
+        <ImageView android:id="@+id/lockImage" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   app:srcCompat="@drawable/ic_lock_black_36dp" android:layout_gravity="center"/>
     </FrameLayout>
     <TextView android:textSize="@dimen/bigtext" android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:id="@+id/textView" android:layout_gravity="center"/>
+
 </LinearLayout>

@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.hafezie.barname.utility.Navigator
 import com.safari.drfoot.R
 import com.safari.drfoot.activities.ScenarioActivity
@@ -24,6 +26,7 @@ class PersonAdapter(private val context: Activity, private val mDataset: List<Pe
         val root: View = v.findViewById(R.id.root)
         val title: TextView = v.findViewById(R.id.textView)
         val image: ImageView = v.findViewById(R.id.imageView)
+        val lock: ImageView = v.findViewById(R.id.lockImage)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonAdapter.ViewHolder {
@@ -42,10 +45,21 @@ class PersonAdapter(private val context: Activity, private val mDataset: List<Pe
             Glide.with(context).load(person.imageLocal).into(holder.image)
         }
 
-        holder.root.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putInt(PERSON_ID_KEY, person.id)
-            Navigator.withBundle(bundle).changeActivityFade(context, ScenarioActivity::class.java, false)
+        if (person.isLocked) {
+            holder.lock.visibility = View.VISIBLE
+            holder.image.alpha = .3f
+            holder.root.setOnClickListener {
+                YoYo.with(Techniques.Wobble).playOn(holder.lock)
+            }
+        }
+        else {
+            holder.lock.visibility = View.INVISIBLE
+            holder.image.alpha = 1f
+            holder.root.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putInt(PERSON_ID_KEY, person.id)
+                Navigator.withBundle(bundle).changeActivityFade(context, ScenarioActivity::class.java, false)
+            }
         }
     }
 

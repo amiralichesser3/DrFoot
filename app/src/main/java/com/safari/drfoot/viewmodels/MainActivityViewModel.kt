@@ -35,19 +35,19 @@ class MainActivityViewModel @Inject constructor(private val gameLevelRepo: GameL
             if (!personRepo.exists()) {
                 val people = arrayListOf(Person(1, "Muhammad", null, R.drawable.oldman,
                     "Demographic Info 1", "History Info 1", "Main Problem 1",
-                    "Initial Examination Result 1", "Lab Results 1" ),
+                    "Initial Examination Result 1", "Lab Results 1", false),
                     Person(2, "Zahra", null, R.drawable.oldwoman,
                         "Demographic Info 2", "History Info 2", "Main Problem 2",
-                        "Initial Examination Result 2", "Lab Results 2" ),
+                        "Initial Examination Result 2", "Lab Results 2", true),
                     Person(3, "Ali", null, R.drawable.youngman,
                         "Demographic Info 3", "History Info 3", "Main Problem 3",
-                        "Initial Examination Result 3", "Lab Results 3" ),
+                        "Initial Examination Result 3", "Lab Results 3", true),
                     Person(4, "Maryam", null, R.drawable.youngwoman,
                         "Demographic Info 4", "History Info 4", "Main Problem 4",
-                        "Initial Examination Result 4", "Lab Results 4" ),
+                        "Initial Examination Result 4", "Lab Results 4", true),
                     Person(5, "Sam", null, R.drawable.kid,
                         "Demographic Info 5", "History Info 5", "Main Problem 5",
-                        "Initial Examination Result 5", "Lab Results 5" ))
+                        "Initial Examination Result 5", "Lab Results 5", true))
                 personRepo.save(people)
             }
 

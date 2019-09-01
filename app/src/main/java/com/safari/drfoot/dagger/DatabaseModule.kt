@@ -2,9 +2,7 @@ package com.hafezie.barname.dagger
 
 import android.app.Application
 import android.arch.persistence.room.Room
-import com.safari.drfoot.daos.GameLevelDao
-import com.safari.drfoot.daos.PersonDao
-import com.safari.drfoot.daos.PersonGameLevelDao
+import com.safari.drfoot.daos.*
 import com.safari.drfoot.database.MyDatabase
 import dagger.Module
 import dagger.Provides
@@ -29,6 +27,30 @@ internal class DatabaseModule {
     @Singleton
     fun providePersonGameLevelDao(database: MyDatabase): PersonGameLevelDao {
         return database.personGameLevelDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideDemographicDao(database: MyDatabase): DemographicDao {
+        return database.demographicDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideHistoryDao(database: MyDatabase): HistoryDao {
+        return database.historyDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideExaminationDao(database: MyDatabase): ExaminationDao {
+        return database.examinationDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideInvestigationDao(database: MyDatabase): InvestigationDao {
+        return database.investigationDao()
     }
 
     @Provides

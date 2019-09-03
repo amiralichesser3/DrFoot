@@ -2,6 +2,7 @@ package com.hafezie.barname.dagger
 
 import com.safari.drfoot.activities.GameLevelActivity
 import com.safari.drfoot.activities.MainActivity
+import com.safari.drfoot.activities.ScenarioActivity
 import com.safari.drfoot.activities.Splash
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -16,4 +17,7 @@ abstract class ActivitiesModule {
 
     @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
     internal abstract fun contributeGameLevelActivity(): GameLevelActivity
+
+    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
+    internal abstract fun contributeScenarioActivity(): ScenarioActivity
 }

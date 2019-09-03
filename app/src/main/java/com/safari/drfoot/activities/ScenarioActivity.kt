@@ -1,16 +1,21 @@
 package com.safari.drfoot.activities
 
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.hafezie.barname.utility.InjectorActivity
+import com.hafezie.barname.utility.InjectorActivity_MembersInjector
 import com.hafezie.barname.utility.Toaster
 import com.safari.drfoot.R
 import com.safari.drfoot.adapters.CATEGORY_KEY
 import com.safari.drfoot.adapters.PERSON_ID_KEY
 import com.safari.drfoot.fragments.GameFragment1
+import com.safari.drfoot.viewmodels.GameViewModel
 import kotlinx.android.synthetic.main.activity_scenario.*
 import java.util.*
 
-class ScenarioActivity : AppCompatActivity() {
+class ScenarioActivity : InjectorActivity<GameViewModel>() {
 
     var secondsPassed: Int = 0
 
@@ -18,6 +23,8 @@ class ScenarioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scenario)
         val personId = intent!!.extras!!.getInt(PERSON_ID_KEY)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(GameViewModel::class.java)
+        viewModel.init(personId)
         startTimer()
         loadFragment(personId)
     }

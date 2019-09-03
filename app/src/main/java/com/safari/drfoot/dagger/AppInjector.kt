@@ -1,4 +1,4 @@
-package com.hafezie.barname.dagger
+package com.safari.drfoot.dagger
 
 import android.app.Activity
 import android.app.Application

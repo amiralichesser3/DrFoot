@@ -4,7 +4,7 @@ import android.animation.Animator
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.hafezie.barname.utility.Navigator
+import com.safari.drfoot.utility.Navigator
 import com.safari.drfoot.R
 import kotlinx.android.synthetic.main.activity_splash.*
 

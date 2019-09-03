@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.hafezie.barname.utility.InjectorFragment
+import com.safari.drfoot.utility.InjectorFragment
 
 import com.safari.drfoot.R
 import com.safari.drfoot.entities.Investigation

@@ -1,4 +1,4 @@
-package com.hafezie.barname.dagger
+package com.safari.drfoot.dagger
 
 import com.safari.drfoot.fragments.*
 import dagger.Module

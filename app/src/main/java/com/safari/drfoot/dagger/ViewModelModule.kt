@@ -1,4 +1,4 @@
-package com.hafezie.barname.dagger
+package com.safari.drfoot.dagger
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider

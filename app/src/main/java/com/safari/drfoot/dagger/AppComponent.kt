@@ -1,7 +1,8 @@
-package com.hafezie.barname.dagger
+package com.safari.drfoot.dagger
 
 import android.app.Application
 import com.safari.drfoot.application.MyApp
+import com.safari.drfoot.dagger.ActivitiesModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

@@ -13,7 +13,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
-import com.hafezie.barname.utility.Navigator
+import com.safari.drfoot.utility.Navigator
 import com.safari.drfoot.R
 import com.safari.drfoot.activities.GameLevelActivity
 import com.safari.drfoot.entities.GameLevel

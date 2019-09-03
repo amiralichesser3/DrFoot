@@ -6,8 +6,8 @@ import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import com.hafezie.barname.utility.InjectorActivity
-import com.hafezie.barname.utility.Toaster
+import com.safari.drfoot.utility.InjectorActivity
+import com.safari.drfoot.utility.Toaster
 import com.safari.drfoot.R
 import com.safari.drfoot.adapters.GameLevelAdapter
 import com.safari.drfoot.entities.GameLevel

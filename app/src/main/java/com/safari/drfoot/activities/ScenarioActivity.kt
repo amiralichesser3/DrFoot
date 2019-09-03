@@ -4,9 +4,9 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import com.hafezie.barname.utility.InjectorActivity
-import com.hafezie.barname.utility.InjectorActivity_MembersInjector
-import com.hafezie.barname.utility.Toaster
+import com.safari.drfoot.utility.InjectorActivity
+import com.safari.drfoot.utility.InjectorActivity_MembersInjector
+import com.safari.drfoot.utility.Toaster
 import com.safari.drfoot.R
 import com.safari.drfoot.adapters.CATEGORY_KEY
 import com.safari.drfoot.adapters.PERSON_ID_KEY

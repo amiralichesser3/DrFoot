@@ -2,7 +2,7 @@ package com.safari.drfoot.application
 
 import android.app.Activity
 import android.app.Application
-import com.hafezie.barname.dagger.AppInjector
+import com.safari.drfoot.dagger.AppInjector
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector

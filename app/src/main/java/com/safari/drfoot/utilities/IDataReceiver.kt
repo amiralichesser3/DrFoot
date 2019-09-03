@@ -1,4 +1,4 @@
-package com.hafezie.barname.utility
+package com.safari.drfoot.utility
 
 interface IDataReceiver<T> {
     fun onDataReceived(data: T?)

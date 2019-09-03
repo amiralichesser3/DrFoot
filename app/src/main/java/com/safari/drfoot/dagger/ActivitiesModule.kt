@@ -1,9 +1,10 @@
-package com.hafezie.barname.dagger
+package com.safari.drfoot.dagger
 
 import com.safari.drfoot.activities.GameLevelActivity
 import com.safari.drfoot.activities.MainActivity
 import com.safari.drfoot.activities.ScenarioActivity
 import com.safari.drfoot.activities.Splash
+import com.safari.drfoot.dagger.FragmentBuildersModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

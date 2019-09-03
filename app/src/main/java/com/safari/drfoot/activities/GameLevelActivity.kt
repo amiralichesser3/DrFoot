@@ -4,7 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import com.hafezie.barname.utility.InjectorActivity
+import com.safari.drfoot.utility.InjectorActivity
 import com.safari.drfoot.R
 import com.safari.drfoot.adapters.CATEGORY_KEY
 import com.safari.drfoot.adapters.GAMELEVEL_ID_KEY

@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hafezie.barname.utility.InjectorFragment
+import com.safari.drfoot.utility.InjectorFragment
 import com.safari.drfoot.R
 import kotlinx.android.synthetic.main.fragment_game_fragment2.*
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems

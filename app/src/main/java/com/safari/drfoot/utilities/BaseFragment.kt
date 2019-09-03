@@ -1,4 +1,4 @@
-package com.hafezie.barname.utility
+package com.safari.drfoot.utility
 
 import android.support.v4.app.Fragment
 

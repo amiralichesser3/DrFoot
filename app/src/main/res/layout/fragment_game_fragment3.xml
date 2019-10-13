@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+    <LinearLayout
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <ImageView
+                android:layout_margin="16dp"
+                android:id="@+id/imageView"
+                android:layout_width="62dp"
+                android:layout_height="62dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="Which Principal?" android:layout_marginBottom="12dp"/>
+        <Button android:id="@+id/debridementButton" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Debridement"/>
+        <Button android:id="@+id/dressingButton" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Dressing"/>
+        <Button android:id="@+id/antibioticsButton" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Antibiotics"/>
+        <Button android:id="@+id/revascularizationButton" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Revascularization"/>
+        <Button android:id="@+id/patientEducationButton"  android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Patient Education"/>
+
+    </LinearLayout>
+</ScrollView>

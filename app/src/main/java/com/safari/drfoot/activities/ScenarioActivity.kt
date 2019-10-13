@@ -1,16 +1,12 @@
 package com.safari.drfoot.activities
 
-import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.safari.drfoot.utility.InjectorActivity
-import com.safari.drfoot.utility.InjectorActivity_MembersInjector
-import com.safari.drfoot.utility.Toaster
 import com.safari.drfoot.R
-import com.safari.drfoot.adapters.CATEGORY_KEY
 import com.safari.drfoot.adapters.PERSON_ID_KEY
 import com.safari.drfoot.fragments.GameFragment1
+import com.safari.drfoot.fragments.GameFragment2
 import com.safari.drfoot.viewmodels.GameViewModel
 import kotlinx.android.synthetic.main.activity_scenario.*
 import java.util.*
@@ -18,6 +14,7 @@ import java.util.*
 class ScenarioActivity : InjectorActivity<GameViewModel>() {
 
     var secondsPassed: Int = 0
+    var isQuizLoaded = false;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +23,7 @@ class ScenarioActivity : InjectorActivity<GameViewModel>() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(GameViewModel::class.java)
         viewModel.init(personId)
         startTimer()
-        loadFragment(personId)
+        loadGameFragment(personId)
     }
 
     private fun startTimer() {
@@ -46,9 +43,25 @@ class ScenarioActivity : InjectorActivity<GameViewModel>() {
         timer.scheduleAtFixedRate(timerTask, 0, 1000)
     }
 
-    private fun loadFragment(personId: Int) {
+    public fun loadGameFragment(personId: Int) {
+        isQuizLoaded = false
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentContainer, GameFragment1.newInstance(personId))
         transaction.commit()
+    }
+
+    public fun loadQuizFragment(personId: Int) {
+        isQuizLoaded = true
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragmentContainer, GameFragment2.newInstance(personId))
+        transaction.commit()
+    }
+
+    override fun onBackPressed() {
+        if (isQuizLoaded) {
+            loadGameFragment(intent!!.extras!!.getInt(PERSON_ID_KEY))
+        } else {
+            super.onBackPressed()
+        }
     }
 }

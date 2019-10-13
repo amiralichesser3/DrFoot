@@ -47,7 +47,7 @@ class GameFragment1 : InjectorFragment<GameViewModel>() {
                 .add("History", HistoryFragment::class.java, bundle)
                 .add("Examination", ExaminationFragment::class.java, bundle)
                 .add("Investigation", InvestigationFragment::class.java, bundle)
-                .add("Next Stage", NextStageFragment::class.java)
+                .add("Next Stage", NextStageFragment::class.java, bundle)
                 .create()
         )
 

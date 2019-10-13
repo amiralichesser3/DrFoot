@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.safari.drfoot.utility.InjectorFragment
 
 import com.safari.drfoot.R
@@ -39,6 +40,11 @@ class DemographicsFragment : InjectorFragment<DemographicsViewModel>() {
         viewModel.init(personId)
         val observer = Observer<Demographic> {
             textView.text = it!!.info
+            Glide.with(context!!).load(it.labResultsImage).into(imageView)
+            textView2.text = it.physicalExamResults
+            textView3.text = it.diabetesHistory
+            textView4.text = it.history
+            textView5.text = it.medication
         }
         viewModel.demographic.observe(this, observer)
     }

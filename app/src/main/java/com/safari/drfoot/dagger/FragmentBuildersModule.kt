@@ -13,6 +13,9 @@ abstract class FragmentBuildersModule {
     internal abstract fun contributeGameFragment(): GameFragment1
 
     @ContributesAndroidInjector
+    internal abstract fun contributeGame2Fragment(): GameFragment2
+
+    @ContributesAndroidInjector
     internal abstract fun contributeDemographicsFragment(): DemographicsFragment
 
     @ContributesAndroidInjector

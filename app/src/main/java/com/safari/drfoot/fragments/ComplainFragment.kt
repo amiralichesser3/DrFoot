@@ -7,12 +7,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.safari.drfoot.utility.InjectorFragment
 
 import com.safari.drfoot.R
 import com.safari.drfoot.entities.Demographic
 import com.safari.drfoot.viewmodels.DemographicsViewModel
-import kotlinx.android.synthetic.main.fragment_demographics.*
+import kotlinx.android.synthetic.main.fragment_complain.*
 
 private const val PERSON_ID = "pid"
 class ComplainFragment : InjectorFragment<DemographicsViewModel>() {
@@ -39,6 +40,7 @@ class ComplainFragment : InjectorFragment<DemographicsViewModel>() {
         viewModel.init(personId)
         val observer = Observer<Demographic> {
             textView.text = it!!.presentingComplain
+            Glide.with(context!!).load(it!!.presentingComplainImage).into(imageView)
         }
         viewModel.demographic.observe(this, observer)
     }

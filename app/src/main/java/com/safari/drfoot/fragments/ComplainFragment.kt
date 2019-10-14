@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ablanco.zoomy.Zoomy
 import com.bumptech.glide.Glide
 import com.safari.drfoot.utility.InjectorFragment
 
@@ -43,6 +44,9 @@ class ComplainFragment : InjectorFragment<DemographicsViewModel>() {
             Glide.with(context!!).load(it!!.presentingComplainImage).into(imageView)
         }
         viewModel.demographic.observe(this, observer)
+
+        val builder = Zoomy.Builder(activity).target(imageView)
+        builder.register()
     }
 
     companion object {

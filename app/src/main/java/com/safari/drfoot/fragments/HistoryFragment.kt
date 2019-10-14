@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ablanco.zoomy.Zoomy
 import com.bumptech.glide.Glide
 import com.safari.drfoot.utility.InjectorFragment
 
@@ -48,6 +49,9 @@ class HistoryFragment : InjectorFragment<HistoryViewModel>() {
             textView6.text = it.psychologyHistory
         }
         viewModel.history.observe(this, observer)
+
+        val builder = Zoomy.Builder(activity).target(historyImage)
+        builder.register()
     }
 
     companion object {

@@ -3,6 +3,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
     <LinearLayout
+            android:gravity="center"
             android:orientation="vertical"
             android:padding="16dp"
             android:layout_width="match_parent"
@@ -24,6 +25,12 @@
                 android:text="Revascularization"/>
         <Button android:id="@+id/patientEducationButton"  android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:text="Patient Education"/>
+
+        <Button android:id="@+id/finishButton" android:layout_width="wrap_content"
+                android:layout_marginTop="64dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_height="wrap_content"
+                android:text="Finish"/>
 
     </LinearLayout>
 </ScrollView>

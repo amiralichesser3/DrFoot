@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ablanco.zoomy.Zoomy
 import com.bumptech.glide.Glide
 import com.safari.drfoot.utility.InjectorFragment
 
@@ -14,6 +15,7 @@ import com.safari.drfoot.R
 import com.safari.drfoot.entities.Demographic
 import com.safari.drfoot.viewmodels.DemographicsViewModel
 import kotlinx.android.synthetic.main.fragment_demographics.*
+import kotlinx.android.synthetic.main.fragment_demographics.imageView
 
 private const val PERSON_ID = "pid"
 class DemographicsFragment : InjectorFragment<DemographicsViewModel>() {
@@ -47,6 +49,9 @@ class DemographicsFragment : InjectorFragment<DemographicsViewModel>() {
             textView5.text = it.medication
         }
         viewModel.demographic.observe(this, observer)
+
+        val builder = Zoomy.Builder(activity).target(imageView)
+        builder.register()
     }
 
     companion object {

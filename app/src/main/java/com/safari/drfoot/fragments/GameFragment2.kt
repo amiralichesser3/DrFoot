@@ -14,6 +14,7 @@ import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.safari.drfoot.utility.InjectorFragment
 import com.safari.drfoot.R
+import com.safari.drfoot.activities.ScenarioActivity
 import com.safari.drfoot.viewmodels.GameLevelActivityViewModel
 import com.safari.drfoot.viewmodels.GameViewModel
 import kotlinx.android.synthetic.main.fragment_game_fragment3.*
@@ -21,19 +22,28 @@ import kotlinx.android.synthetic.main.fragment_game_fragment3.*
 private const val PERSON_ID = "pid"
 class GameFragment2 : InjectorFragment<GameLevelActivityViewModel>(), View.OnClickListener {
     override fun onClick(view: View?) {
-        if (view!!.id == R.id.revascularizationButton) {
+        if (view!!.id == R.id.revascularizationButton || view.id == R.id.dressingButton) {
             handleSuccess(view)
-        } else {
+        } else if(view.id == R.id.finishButton) {
+            handleEnd();
+        } else  {
             handleLoss(view)
         }
     }
 
+    private fun handleEnd() {
+        (activity as ScenarioActivity).handleEnd()
+    }
+
     private fun handleSuccess(view: View) {
+        view.isEnabled = false
         YoYo.with(Techniques.Tada).playOn(view)
+        (activity as ScenarioActivity).handleSuccess()
     }
 
     private fun handleLoss(view: View) {
-        YoYo.with(Techniques.Wobble).playOn(view)
+        YoYo.with(Techniques.Flash).playOn(view)
+        (activity as ScenarioActivity).handleLoss()
     }
 
     private var personId: Int? = null
@@ -67,6 +77,7 @@ class GameFragment2 : InjectorFragment<GameLevelActivityViewModel>(), View.OnCli
         dressingButton.setOnClickListener(this)
         antibioticsButton.setOnClickListener(this)
         revascularizationButton.setOnClickListener(this)
+        finishButton.setOnClickListener(this)
     }
 
     companion object {

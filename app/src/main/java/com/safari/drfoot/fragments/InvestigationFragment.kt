@@ -14,6 +14,9 @@ import com.safari.drfoot.R
 import com.safari.drfoot.entities.Investigation
 import com.safari.drfoot.viewmodels.InvestigationViewModel
 import kotlinx.android.synthetic.main.fragment_investigation.*
+import com.ablanco.zoomy.Zoomy
+
+
 
 private const val PERSON_ID = "pid"
 class InvestigationFragment : InjectorFragment<InvestigationViewModel>() {
@@ -42,6 +45,9 @@ class InvestigationFragment : InjectorFragment<InvestigationViewModel>() {
             Glide.with(context!!).load(it!!.investigationImage).into(imageView)
         }
         viewModel.investigation.observe(this, observer)
+
+        val builder = Zoomy.Builder(activity).target(imageView)
+        builder.register()
     }
 
     companion object {

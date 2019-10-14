@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ablanco.zoomy.Zoomy
 import com.bumptech.glide.Glide
 import com.safari.drfoot.utility.InjectorFragment
 
@@ -39,12 +40,15 @@ class ExaminationFragment : InjectorFragment<ExaminationViewModel>() {
         viewModel.init(personId)
         val observer = Observer<Examination> {
             textView.text = it!!.inspection
-            Glide.with(context!!).load(it!!.inspectionImage).into(imageView);
+            Glide.with(context!!).load(it!!.inspectionImage).into(imageView)
             textView2.text = it!!.footwearAssessment
             textView3.text = it!!.neurologicalAssessment
             textView4.text = it!!.generalExamination
         }
         viewModel.examination.observe(this, observer)
+
+        val builder = Zoomy.Builder(activity).target(imageView)
+        builder.register()
     }
 
     companion object {

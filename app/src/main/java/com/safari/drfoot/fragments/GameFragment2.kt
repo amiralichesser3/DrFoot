@@ -2,10 +2,8 @@ package com.safari.drfoot.fragments
 
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +14,6 @@ import com.safari.drfoot.utility.InjectorFragment
 import com.safari.drfoot.R
 import com.safari.drfoot.activities.ScenarioActivity
 import com.safari.drfoot.viewmodels.GameLevelActivityViewModel
-import com.safari.drfoot.viewmodels.GameViewModel
 import kotlinx.android.synthetic.main.fragment_game_fragment3.*
 
 private const val PERSON_ID = "pid"
@@ -25,7 +22,7 @@ class GameFragment2 : InjectorFragment<GameLevelActivityViewModel>(), View.OnCli
         if (view!!.id == R.id.revascularizationButton || view.id == R.id.dressingButton) {
             handleSuccess(view)
         } else if(view.id == R.id.finishButton) {
-            handleEnd();
+            handleEnd()
         } else  {
             handleLoss(view)
         }
@@ -65,8 +62,7 @@ class GameFragment2 : InjectorFragment<GameLevelActivityViewModel>(), View.OnCli
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(GameLevelActivityViewModel::class.java)
-        var people = arrayListOf<Int>()
+        val people = arrayListOf<Int>()
         people.add(personId!!)
         viewModel.loadPeople(people).observe(this, Observer {
             Glide.with(context!!).load(it!![0].imageLocal).into(imageView)

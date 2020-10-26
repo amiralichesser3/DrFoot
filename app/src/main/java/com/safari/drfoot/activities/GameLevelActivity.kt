@@ -1,7 +1,6 @@
 package com.safari.drfoot.activities
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import com.safari.drfoot.utility.InjectorActivity
@@ -22,7 +21,6 @@ class GameLevelActivity : InjectorActivity<GameLevelActivityViewModel>() {
         val gameLevelId = intent!!.extras!!.getInt(GAMELEVEL_ID_KEY)
         val categoryTitle = intent!!.extras!!.getString(CATEGORY_KEY)
         titleText.text = categoryTitle
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(GameLevelActivityViewModel::class.java)
         viewModel.init(gameLevelId)
 
         val peopleObserver = Observer<List<Person>> {

@@ -39,7 +39,6 @@ class InvestigationFragment : InjectorFragment<InvestigationViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(InvestigationViewModel::class.java)
         viewModel.init(personId)
         val observer = Observer<Investigation> {
             Glide.with(context!!).load(it!!.investigationImage).into(imageView)

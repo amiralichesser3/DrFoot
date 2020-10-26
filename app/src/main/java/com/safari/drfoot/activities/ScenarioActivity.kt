@@ -1,6 +1,6 @@
 package com.safari.drfoot.activities
 
-import android.arch.lifecycle.ViewModelProviders
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import com.daimajia.androidanimations.library.Techniques
@@ -19,13 +19,12 @@ import java.util.*
 class ScenarioActivity : InjectorActivity<GameViewModel>() {
 
     var secondsPassed: Int = 0
-    var isQuizLoaded = false;
+    private var isQuizLoaded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scenario)
         val personId = intent!!.extras!!.getInt(PERSON_ID_KEY)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(GameViewModel::class.java)
         viewModel.init(personId)
         startTimer()
         doctorTalking.animate().alpha(0f)
@@ -36,6 +35,7 @@ class ScenarioActivity : InjectorActivity<GameViewModel>() {
     private fun startTimer() {
         val timer = Timer()
         val timerTask = object: TimerTask() {
+            @SuppressLint("SetTextI18n")
             override fun run() {
                 runOnUiThread {
                     secondsPassed++
@@ -50,35 +50,35 @@ class ScenarioActivity : InjectorActivity<GameViewModel>() {
         timer.scheduleAtFixedRate(timerTask, 0, 1000)
     }
 
-    public fun loadGameFragment(personId: Int) {
+    private fun loadGameFragment(personId: Int) {
         isQuizLoaded = false
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentContainer, GameFragment1.newInstance(personId))
         transaction.commit()
     }
 
-    public fun loadQuizFragment(personId: Int) {
+    fun loadQuizFragment(personId: Int) {
         isQuizLoaded = true
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragmentContainer, GameFragment2.newInstance(personId))
         transaction.commit()
     }
 
-    public fun handleLoss() {
+    fun handleLoss() {
         YoYo.with(Techniques.Wobble).playOn(doctorImage)
         YoYo.with(Techniques.BounceIn).playOn(coinImage)
         coinTextView.text = CoinHelper.removeCoin(applicationContext).toString()
         talk(true)
     }
 
-    fun talk(isLoss: Boolean) {
+    private fun talk(isLoss: Boolean) {
         if (isLoss) {
             doctorTalking.text = getRandomLossText()
         } else {
             doctorTalking.text = getRandomSuccessText()
         }
 
-        doctorTalking.animate().alpha(1f);
+        doctorTalking.animate().alpha(1f)
         Handler().postDelayed({ doctorTalking.animate().alpha(0f) }, 2000)
     }
 
@@ -101,7 +101,7 @@ class ScenarioActivity : InjectorActivity<GameViewModel>() {
         }
     }
 
-    fun getRandomSuccessText(): String {
+    private fun getRandomSuccessText(): String {
         val successTexts = arrayListOf<String>()
         successTexts.add("آفرین")
         successTexts.add("احسنت")
@@ -112,7 +112,7 @@ class ScenarioActivity : InjectorActivity<GameViewModel>() {
         return successTexts[(0..5).random()]
     }
 
-    fun getRandomLossText(): String {
+    private fun getRandomLossText(): String {
         val lossTexts = arrayListOf<String>()
         lossTexts.add("دقت کن")
         lossTexts.add("متاسفم")

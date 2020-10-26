@@ -37,7 +37,6 @@ class ComplainFragment : InjectorFragment<DemographicsViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(DemographicsViewModel::class.java)
         viewModel.init(personId)
         val observer = Observer<Demographic> {
             textView.text = it!!.presentingComplain

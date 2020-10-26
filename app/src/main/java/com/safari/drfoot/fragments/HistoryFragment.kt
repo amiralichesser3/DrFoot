@@ -37,7 +37,6 @@ class HistoryFragment : InjectorFragment<HistoryViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(HistoryViewModel::class.java)
         viewModel.init(personId)
         val observer = Observer<History> {
             textView.text = it!!.pastFootHistory

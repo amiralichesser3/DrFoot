@@ -36,7 +36,6 @@ class GameFragment1 : InjectorFragment<GameViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(GameViewModel::class.java)
         viewModel.init(personId)
         val bundle = Bundle()
         bundle.putInt("pid", personId!!)

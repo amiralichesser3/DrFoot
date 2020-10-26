@@ -36,7 +36,6 @@ class ExaminationFragment : InjectorFragment<ExaminationViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ExaminationViewModel::class.java)
         viewModel.init(personId)
         val observer = Observer<Examination> {
             textView.text = it!!.inspection

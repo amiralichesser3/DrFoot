@@ -48,5 +48,10 @@ internal abstract class ViewModelModule {
     internal abstract fun bindInvestigationViewModel(investigationViewModel: InvestigationViewModel): ViewModel
 
     @Binds
+    @IntoMap
+    @ViewModelKey(RegisterViewModel::class)
+    internal abstract fun bindRegisterViewModel(registerViewModel: RegisterViewModel): ViewModel
+
+    @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

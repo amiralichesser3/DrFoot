@@ -19,6 +19,12 @@ internal class DatabaseModule {
 
     @Provides
     @Singleton
+    fun provideMeDao(database: MyDatabase): MeDao {
+        return database.meDao()
+    }
+
+    @Provides
+    @Singleton
     fun providePersonDao(database: MyDatabase): PersonDao {
         return database.personDao()
     }
@@ -58,4 +64,5 @@ internal class DatabaseModule {
     fun provideDatabase(app: Application): MyDatabase {
         return Room.databaseBuilder(app, MyDatabase::class.java, "my-db").allowMainThreadQueries().fallbackToDestructiveMigration().build()
     }
+
 }

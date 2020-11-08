@@ -5,4 +5,9 @@
     <dimen name="smallmargin">12dp</dimen>
     <dimen name="bigtext">16sp</dimen>
     <dimen name="smalltext">12sp</dimen>
+    <dimen name="slider_height">32dp</dimen>
+    <dimen name="normal_margin">24dp</dimen>
+    <dimen name="slider_dot_size">8dp</dimen>
+    <dimen name="slider_dot_margin">4dp</dimen>
+    <dimen name="fontsize_big">24sp</dimen>
 </resources>

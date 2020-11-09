@@ -1,13 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent" android:layout_height="match_parent">
-
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/normal_margin"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_doctor_48"
+            android:id="@+id/doctorImage"
+            android:layout_alignParentRight="true" />
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/dialog"
+            android:layout_toLeftOf="@+id/doctorImage"
+            android:layout_marginTop="43dp"
+            android:layout_marginLeft="45dp"
+            android:text="Hi! Talk to me by clicking on my avatar"
+            android:background="@drawable/bubble"/>
     <Button
-            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:id="@+id/registerButton"
             android:background="@color/white"
             android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register!" />
-</FrameLayout>
+            android:visibility="invisible"
+            android:text="Play!" />
+
+
+</RelativeLayout>

@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.safari.drfoot.R
-import com.safari.drfoot.activities.RegisterActivity
 import com.safari.drfoot.entities.Me
 import com.safari.drfoot.utility.InjectorFragment
 import com.safari.drfoot.viewmodels.RegisterViewModel
@@ -35,10 +33,10 @@ class SliderFragment4 : InjectorFragment<RegisterViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init()
         viewModel.me.observe(this, Observer { me = it })
-        registerButton.setOnClickListener(View.OnClickListener {
+        registerButton.setOnClickListener {
             me?.isComplete = true
             viewModel.save(me)
-        })
+        }
     }
 
     companion object {  

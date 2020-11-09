@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.safari.drfoot.R
-import com.safari.drfoot.activities.RegisterActivity
 import com.safari.drfoot.entities.Me
 import com.safari.drfoot.utility.InjectorFragment
 import com.safari.drfoot.viewmodels.RegisterViewModel
@@ -101,7 +100,7 @@ class SliderFragment1 : InjectorFragment<RegisterViewModel>(), View.OnClickListe
         selectedView?.alpha = ALPHADISABLED
         selectedView = view
         selectedView?.animate()?.scaleX(UPSCALE)?.scaleY(UPSCALE)?.duration = 100
-        selectedView?.alpha = ALPHAENABLED;
+        selectedView?.alpha = ALPHAENABLED
 
 
         when {

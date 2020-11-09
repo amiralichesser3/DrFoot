@@ -4,8 +4,9 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
 @Entity
-class Me(@PrimaryKey val id: Int,
-             val name: String,
-             val imageUrl: String?,
-             val imageLocal: Int?,
-             val email: String)
+class Me(@PrimaryKey var id: Int,
+         var name: String?,
+         var imageUrl: String?,
+         var imageLocal: Int?,
+         var email: String?,
+         var isComplete: Boolean?)

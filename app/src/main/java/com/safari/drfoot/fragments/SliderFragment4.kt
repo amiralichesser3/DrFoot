@@ -2,20 +2,18 @@ package com.safari.drfoot.fragments
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.safari.drfoot.R
+import com.safari.drfoot.activities.RegisterActivity
 import com.safari.drfoot.entities.Me
 import com.safari.drfoot.utility.InjectorFragment
 import com.safari.drfoot.viewmodels.RegisterViewModel
-import kotlinx.android.synthetic.main.fragment_slider2.*
+import kotlinx.android.synthetic.main.fragment_slider4.*
 
-class SliderFragment2 : InjectorFragment<RegisterViewModel>() {
+class SliderFragment4 : InjectorFragment<RegisterViewModel>() {
 
     private var me: Me? = null
 
@@ -30,40 +28,23 @@ class SliderFragment2 : InjectorFragment<RegisterViewModel>() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_slider2, container, false)
+        return inflater.inflate(R.layout.fragment_slider4, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init()
-        viewModel.me.observe(this, Observer {
-            me = it
-            if (name.text.toString() != me?.name) {
-                name.setText(me?.name)
-            }
-        })
-
-        name.addTextChangedListener(object: TextWatcher   {
-            override fun afterTextChanged(p0: Editable?) {
-                me?.name = name.text.toString()
-                viewModel.save(me)
-            }
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
+        viewModel.me.observe(this, Observer { me = it })
+        registerButton.setOnClickListener(View.OnClickListener {
+            me?.isComplete = true
+            viewModel.save(me)
         })
     }
 
     companion object {  
         @JvmStatic
         fun newInstance() =
-            SliderFragment2().apply {
+            SliderFragment4().apply {
                 arguments = Bundle().apply {
                 }
             }

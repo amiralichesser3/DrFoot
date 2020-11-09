@@ -12,7 +12,8 @@
             android:layout_height="wrap_content"
         android:orientation="vertical">
         <android.support.v7.widget.AppCompatTextView
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="sans-serif-thin"
             android:layout_marginBottom="@dimen/smallmargin"
             android:layout_width="wrap_content"
             android:textSize="@dimen/fontsize_big"

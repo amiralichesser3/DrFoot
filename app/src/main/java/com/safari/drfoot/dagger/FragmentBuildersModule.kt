@@ -29,4 +29,16 @@ abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeHistoryFragment(): HistoryFragment
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeSliderFragment1(): SliderFragment1
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeSliderFragment2(): SliderFragment2
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeSliderFragment3(): SliderFragment3
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeSliderFragment4(): SliderFragment4
 }

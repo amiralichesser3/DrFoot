@@ -21,4 +21,7 @@ abstract class ActivitiesModule {
 
     @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
     internal abstract fun contributeScenarioActivity(): ScenarioActivity
+
+    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
+    internal abstract fun contributeNavActivity(): NavActivity
 }

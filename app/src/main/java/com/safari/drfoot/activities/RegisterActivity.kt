@@ -24,7 +24,7 @@ class RegisterActivity : InjectorActivity<RegisterViewModel>() {
         viewModel.init()
         viewModel.me.observe(this, Observer {
             if (it?.isComplete == true) {
-                Navigator.withouthBundle().changeActivity(this@RegisterActivity, MainActivity::class.java, true)
+                Navigator.withouthBundle().changeActivity(this@RegisterActivity, NavActivity::class.java, true)
             } else {
                 if (adapter == null) {
                     adapter = FragmentPagerItemAdapter(

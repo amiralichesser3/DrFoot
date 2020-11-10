@@ -17,6 +17,10 @@ class MeRepository @Inject constructor(private val meDao: MeDao) {
         return meDao.load()
     }
 
+    fun loadSync(): Me {
+        return meDao.loadSync()
+    }
+
     fun save(me: Me) {
         AsyncTask.execute {
             meDao.save(me)

@@ -14,14 +14,19 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.RegisterActivity"
-                android:theme="@style/AppThemeNoActionBar"/>
+        <activity
+                android:name=".activities.NavActivity"
+                android:label="@string/title_activity_nav"
+                android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+                android:name=".activities.RegisterActivity"
+                android:theme="@style/AppThemeNoActionBar" />
         <activity
                 android:name=".activities.ScenarioActivity"
-                android:theme="@style/AppThemeNoActionBar"/>
+                android:theme="@style/AppThemeNoActionBar" />
         <activity
                 android:name=".activities.GameLevelActivity"
-                android:theme="@style/AppThemeNoActionBar"/>
+                android:theme="@style/AppThemeNoActionBar" />
         <activity
                 android:name=".activities.Splash"
                 android:theme="@style/AppThemeNoActionBar">
@@ -33,7 +38,7 @@
         </activity>
         <activity
                 android:name=".activities.MainActivity"
-                android:theme="@style/AppThemeNoActionBar"/>
+                android:theme="@style/AppThemeNoActionBar" />
     </application>
 
 </manifest>

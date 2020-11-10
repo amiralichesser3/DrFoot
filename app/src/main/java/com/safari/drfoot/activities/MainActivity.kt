@@ -7,6 +7,7 @@ import com.safari.drfoot.utility.InjectorActivity
 import com.safari.drfoot.R
 import com.safari.drfoot.adapters.GameLevelAdapter
 import com.safari.drfoot.entities.GameLevel
+import com.safari.drfoot.utility.Navigator
 import com.safari.drfoot.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -24,5 +25,10 @@ class MainActivity : InjectorActivity<MainActivityViewModel>() {
         }
 
         viewModel.gameLevels.observe(this, gameLevelObserver)
+
+        logout.setOnClickListener {
+            viewModel.logout()
+            Navigator.withouthBundle().changeActivity(this, Splash::class.java, true)
+        }
     }
 }

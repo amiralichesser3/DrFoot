@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(private val gameLevelRepo: GameLevelRepository,
                                                 private val personRepo: PersonRepository,
+                                                private val meRepo: MeRepository,
                                                 private val personGameLevelRepo: PersonGameLevelRepository,
                                                 private val demographicRepository: DemographicRepository,
                                                 private val historyRepository: HistoryRepository,
@@ -20,6 +21,16 @@ class MainActivityViewModel @Inject constructor(private val gameLevelRepo: GameL
     fun init() {
         seedDatabase()
         gameLevels = gameLevelRepo.load()
+    }
+
+    fun loadMe(): LiveData<Me> {
+        return meRepo.load()
+    }
+
+    fun logout() {
+        val me = meRepo.loadSync()
+        me.isComplete = false
+        meRepo.save(me)
     }
 
     private fun seedDatabase() {

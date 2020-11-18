@@ -12,7 +12,9 @@ import com.safari.drfoot.entities.*
     History::class,
     Examination::class,
     Investigation::class,
-    Me::class], version = 8)
+    Section::class,
+    SubSection::class,
+    Me::class], version = 9)
 abstract class MyDatabase : RoomDatabase() {
     abstract fun gameLevelDao(): GameLevelDao
     abstract fun personDao(): PersonDao
@@ -22,4 +24,6 @@ abstract class MyDatabase : RoomDatabase() {
     abstract fun examinationDao(): ExaminationDao
     abstract fun investigationDao(): InvestigationDao
     abstract fun meDao(): MeDao
+    abstract fun sectionDao(): SectionDao
+    abstract fun subSectionDao(): SubSectionDao
 }

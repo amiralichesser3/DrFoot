@@ -6,7 +6,10 @@ import com.safari.drfoot.entities.*
 import com.safari.drfoot.repositories.*
 import javax.inject.Inject
 
-class RegisterViewModel @Inject constructor(private val meRepository: MeRepository) : ViewModel()  {
+class RegisterViewModel @Inject constructor(private val meRepository: MeRepository,
+                                            private val personRepository: PersonRepository,
+                                            private val sectionRepository: SectionRepository,
+                                            private val subSectionRepository: SubSectionRepository) : ViewModel()  {
     lateinit var me: LiveData<Me>
 
     fun init() {
@@ -25,5 +28,9 @@ class RegisterViewModel @Inject constructor(private val meRepository: MeReposito
         AsyncTask.execute {
             meRepository.save(me)
         }
+    }
+
+    fun seedDatabase() {
+
     }
 }

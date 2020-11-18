@@ -61,6 +61,18 @@ internal class DatabaseModule {
 
     @Provides
     @Singleton
+    fun provideSectionDao(database: MyDatabase): SectionDao {
+        return database.sectionDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSubSectionDao(database: MyDatabase): SubSectionDao {
+        return database.subSectionDao()
+    }
+
+    @Provides
+    @Singleton
     fun provideDatabase(app: Application): MyDatabase {
         return Room.databaseBuilder(app, MyDatabase::class.java, "my-db").allowMainThreadQueries().fallbackToDestructiveMigration().build()
     }

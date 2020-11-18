@@ -36,25 +36,27 @@ class MainActivityViewModel @Inject constructor(private val gameLevelRepo: GameL
     private fun seedDatabase() {
         AsyncTask.execute {
             if (!gameLevelRepo.exists()) {
-                val gameLevels = arrayListOf(GameLevel(1, "Prevention", false, "https://www.uottawa.ca/health/sites/www.uottawa.ca.health/files/icons/Icon---Chiropody---V2.png"),
-                    GameLevel(2, "Examination", true, null),
-                    GameLevel(3, "Detection", true, null),
-                    GameLevel(4, "Healing", true, null),
-                    GameLevel(5, "Amputated", true, null))
+                val gameLevels = arrayListOf(
+                    GameLevel(1, "Healthy Foot", false,
+                        "https://www.uottawa.ca/health/sites/www.uottawa.ca.health/files/icons/Icon---Chiropody---V2.png"),
+                    GameLevel(2, "Neuropathic", true, null),
+                    GameLevel(3, "Ischemic ", true, null),
+                    GameLevel(4, "Neuroischaemic", true, null)
+                )
                 gameLevelRepo.save(gameLevels)
             }
 
             if (!personRepo.exists()) {
-                val people = arrayListOf(Person(1, "Muhammad", null, R.drawable.oldman,
+                val people = arrayListOf(Person(1, "Tim", null, R.drawable.oldman,
                     "Demographic Info 1", "History Info 1", "Main Problem 1",
                     "Initial Examination Result 1", "Lab Results 1", false),
-                    Person(2, "Zahra", null, R.drawable.oldwoman,
+                    Person(2, "Alyx", null, R.drawable.oldwoman,
                         "Demographic Info 2", "History Info 2", "Main Problem 2",
                         "Initial Examination Result 2", "Lab Results 2", true),
-                    Person(3, "Ali", null, R.drawable.youngman,
+                    Person(3, "Jeff", null, R.drawable.youngman,
                         "Demographic Info 3", "History Info 3", "Main Problem 3",
                         "Initial Examination Result 3", "Lab Results 3", true),
-                    Person(4, "Maryam", null, R.drawable.youngwoman,
+                    Person(4, "Mina", null, R.drawable.youngwoman,
                         "Demographic Info 4", "History Info 4", "Main Problem 4",
                         "Initial Examination Result 4", "Lab Results 4", true),
                     Person(5, "Sam", null, R.drawable.kid,

@@ -22,6 +22,7 @@ class RegisterActivity : InjectorActivity<RegisterViewModel>() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         viewModel.init()
+        viewModel.seedDatabase()
         viewModel.me.observe(this, Observer {
             if (it?.isComplete == true) {
                 Navigator.withouthBundle().changeActivity(this@RegisterActivity, NavActivity::class.java, true)

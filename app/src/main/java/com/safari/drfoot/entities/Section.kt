@@ -7,4 +7,5 @@ import android.arch.persistence.room.PrimaryKey
 class Section(@PrimaryKey val id: Int,
                  val name: String,
                  val isLocked: Boolean,
-                 val image: String?)
+                 val image: String?,
+                 val parentId: Int?)

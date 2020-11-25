@@ -49,6 +49,11 @@ internal abstract class ViewModelModule {
 
     @Binds
     @IntoMap
+    @ViewModelKey(HomeFragmentViewModel::class)
+    internal abstract fun bindHomeFragmentViewModel(homeFragmentViewModel: HomeFragmentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
     @ViewModelKey(RegisterViewModel::class)
     internal abstract fun bindRegisterViewModel(registerViewModel: RegisterViewModel): ViewModel
 

@@ -73,6 +73,12 @@ internal class DatabaseModule {
 
     @Provides
     @Singleton
+    fun provideAnswerDao(database: MyDatabase): AnswerDao {
+        return database.answerDao()
+    }
+
+    @Provides
+    @Singleton
     fun provideDatabase(app: Application): MyDatabase {
         return Room.databaseBuilder(app, MyDatabase::class.java, "my-db").allowMainThreadQueries().fallbackToDestructiveMigration().build()
     }

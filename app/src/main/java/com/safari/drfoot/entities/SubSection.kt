@@ -6,6 +6,7 @@ import android.arch.persistence.room.PrimaryKey
 @Entity
 class SubSection(@PrimaryKey val id: Int,
                  val name: String,
+                 val userId: Int,
                  val isLocked: Boolean,
                  val image: String?,
                  val sectionId: Int,

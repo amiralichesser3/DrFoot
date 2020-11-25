@@ -17,6 +17,10 @@ class SectionRepository @Inject constructor(private val sectionDao: SectionDao) 
         return sectionDao.load()
     }
 
+    fun loadRoots(): LiveData<List<Section>> {
+        return sectionDao.loadRoots()
+    }
+
     fun save(section: Section) {
         AsyncTask.execute {
             sectionDao.save(section)

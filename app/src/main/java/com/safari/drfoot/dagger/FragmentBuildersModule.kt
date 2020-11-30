@@ -43,5 +43,16 @@ abstract class FragmentBuildersModule {
     internal abstract fun contributeSliderFragment4(): SliderFragment4
 
     @ContributesAndroidInjector
+    internal abstract fun contributePersonFragment(): PersonFragment
+
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeLeafSectionFragment(): LeafSectionFragment
+
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeSubSectionFragment(): SubSectionFragment
+
+    @ContributesAndroidInjector
     internal abstract fun contributeHomeFragment(): HomeFragment
 }

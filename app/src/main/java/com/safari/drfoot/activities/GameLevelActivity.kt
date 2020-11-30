@@ -10,6 +10,7 @@ import com.safari.drfoot.adapters.GAMELEVEL_ID_KEY
 import com.safari.drfoot.adapters.PersonAdapter
 import com.safari.drfoot.entities.Person
 import com.safari.drfoot.entities.PersonGameLevel
+import com.safari.drfoot.utilities.contracts.MyCallback
 import com.safari.drfoot.viewmodels.GameLevelActivityViewModel
 import kotlinx.android.synthetic.main.activity_game_level.*
 
@@ -26,7 +27,16 @@ class GameLevelActivity : InjectorActivity<GameLevelActivityViewModel>() {
         val peopleObserver = Observer<List<Person>> {
             if (it == null || it.isEmpty()) return@Observer
             recyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
-            recyclerView.adapter = PersonAdapter(this@GameLevelActivity, it)
+            recyclerView.adapter = PersonAdapter(this@GameLevelActivity, it, object: MyCallback<Int> {
+                override fun onSuccess(param: Int) {
+                    // Ignored
+                }
+
+                override fun onError(param: Int) {
+                    // Ignored
+                }
+
+            })
         }
 
         val gameLevelsObserver = Observer<List<PersonGameLevel>> {

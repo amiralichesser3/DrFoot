@@ -17,6 +17,10 @@ class SubSectionRepository @Inject constructor(private val subSectionDao: SubSec
         return subSectionDao.load()
     }
 
+    fun load(leafSectionId: Int): LiveData<List<SubSection>> {
+        return subSectionDao.load(leafSectionId)
+    }
+
     fun save(subSection: SubSection) {
         AsyncTask.execute {
             subSectionDao.save(subSection)

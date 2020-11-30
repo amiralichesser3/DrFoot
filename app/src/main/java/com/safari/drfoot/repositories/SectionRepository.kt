@@ -21,6 +21,10 @@ class SectionRepository @Inject constructor(private val sectionDao: SectionDao) 
         return sectionDao.loadRoots()
     }
 
+    fun loadLeaves(parentId: Int): LiveData<List<Section>> {
+        return sectionDao.loadLeafs(parentId)
+    }
+
     fun save(section: Section) {
         AsyncTask.execute {
             sectionDao.save(section)

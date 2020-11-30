@@ -24,4 +24,7 @@ abstract class ActivitiesModule {
 
     @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
     internal abstract fun contributeNavActivity(): NavActivity
+
+    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
+    internal abstract fun contributeLeafSectionActivity(): LeafSectionActivity
 }

@@ -13,8 +13,8 @@ class AnswerRepository @Inject constructor(private val answerDao: AnswerDao) {
         return answerDao.count() != 0
     }
 
-    fun load(userId: Int, subAnswerId: Int): LiveData<List<Answer>> {
-        return answerDao.load(userId, subAnswerId)
+    fun load(userId: Int, mode: String, subAnswerId: Int): LiveData<List<Answer>> {
+        return answerDao.load(userId, mode, subAnswerId)
     }
 
     fun save(Answer: Answer) {

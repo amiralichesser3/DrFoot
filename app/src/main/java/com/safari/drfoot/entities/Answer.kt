@@ -5,6 +5,7 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity
 class Answer(@PrimaryKey val id: Int,
+                 val userId: Int,
                  val mode: String,
                  val isCorrect: Boolean,
                  val sectionId: Int,

@@ -58,5 +58,26 @@ internal abstract class ViewModelModule {
     internal abstract fun bindRegisterViewModel(registerViewModel: RegisterViewModel): ViewModel
 
     @Binds
+    @IntoMap
+    @ViewModelKey(LeafSectionActivityViewModel::class)
+    internal abstract fun bindLeafViewModel(leafSectionActivityViewModel: LeafSectionActivityViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PersonFragmentViewModel::class)
+    internal abstract fun bindPersonFragmentViewModel(personFragmentViewModel: PersonFragmentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LeafSectionFragmentViewModel::class)
+    internal abstract fun bindLeafSectionFragmentViewModel(leafSectionFragmentViewModel: LeafSectionFragmentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SubSectionFragmentViewModel::class)
+    internal abstract fun bindSubSectionFragmentViewModel(subSectionFragmentViewModel: SubSectionFragmentViewModel): ViewModel
+
+
+    @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

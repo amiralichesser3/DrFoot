@@ -32,7 +32,8 @@
                 </LinearLayout>
 
             </LinearLayout>
-        <FrameLayout android:id="@+id/fragmentContainer" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_below="@+id/topLinear" android:layout_marginTop="@dimen/smallmargin">
+        <FrameLayout android:id="@+id/fragmentContainer" android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_below="@+id/topLinear" android:layout_marginTop="@dimen/smallmargin">
 
         </FrameLayout>
 </RelativeLayout>

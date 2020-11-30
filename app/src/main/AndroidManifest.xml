@@ -14,10 +14,13 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activities.LeafSectionActivity"
+                android:theme="@style/AppThemeNoActionBarWithStatusBar"
+                />
         <activity
                 android:name=".activities.NavActivity"
                 android:label="@string/title_activity_nav"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
+                android:theme="@style/AppThemeNoActionBar" />
         <activity
                 android:name=".activities.RegisterActivity"
                 android:theme="@style/AppThemeNoActionBar" />

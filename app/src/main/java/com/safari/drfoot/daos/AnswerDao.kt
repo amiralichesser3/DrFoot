@@ -9,8 +9,8 @@ import com.safari.drfoot.entities.Answer
 
 @Dao
 interface AnswerDao {
-    @Query("SELECT * FROM Answer WHERE mode = :mode AND sectionId = :sectionId")
-    fun load(mode: String, sectionId: Int): LiveData<List<Answer>>
+    @Query("SELECT * FROM Answer WHERE mode = :mode AND sectionId = :sectionId AND userId = :userId")
+    fun load(userId: Int, mode: String, sectionId: Int): LiveData<List<Answer>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(Answer: Answer)

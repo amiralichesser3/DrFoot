@@ -15,6 +15,9 @@ interface SubSectionDao {
     @Query("SELECT * FROM SubSection")
     fun load(): LiveData<List<SubSection>>
 
+    @Query("SELECT * FROM SubSection WHERE sectionId = :leafSectionId")
+    fun load(leafSectionId: Int): LiveData<List<SubSection>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(subSection: SubSection)
 

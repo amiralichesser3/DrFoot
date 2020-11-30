@@ -10,17 +10,16 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.safari.drfoot.R
+import com.safari.drfoot.activities.LeafSectionActivity
 import com.safari.drfoot.adapters.SectionAdapter
+import com.safari.drfoot.utilities.contracts.MyCallback
 import com.safari.drfoot.utility.InjectorFragment
+import com.safari.drfoot.utility.Navigator
 import com.safari.drfoot.viewmodels.HomeFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
-/**
- * A simple [Fragment] subclass.
- */
+const val SECTION_KEY = "sectionKey"
 class HomeFragment : InjectorFragment<HomeFragmentViewModel>() {
-
-    lateinit var adapter: SectionAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +35,17 @@ class HomeFragment : InjectorFragment<HomeFragmentViewModel>() {
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         viewModel.rootSections.observe(this, Observer {
             it?.let {
-                adapter = SectionAdapter(activity as Activity, it)
-                recyclerView.adapter = adapter
+                recyclerView.adapter = SectionAdapter(context!!, it, object: MyCallback<Int> {
+                    override fun onSuccess(param: Int) {
+                        val bundle = Bundle()
+                        bundle.putInt(SECTION_KEY, param)
+                        Navigator.withBundle(bundle).changeActivityFade(activity as Activity, LeafSectionActivity::class.java, false)
+                    }
+
+                    override fun onError(param: Int) {
+                        // Ignored
+                    }
+                })
             }
         })
     }

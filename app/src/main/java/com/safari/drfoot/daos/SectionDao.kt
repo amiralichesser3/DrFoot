@@ -18,6 +18,9 @@ interface SectionDao {
     @Query("SELECT * FROM Section WHERE parentId is null")
     fun loadRoots(): LiveData<List<Section>>
 
+    @Query("SELECT * FROM Section WHERE parentId = :parentId")
+    fun loadLeafs(parentId: Int): LiveData<List<Section>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun save(section: Section)
 

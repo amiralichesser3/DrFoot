@@ -1,7 +1,6 @@
 package com.safari.drfoot.adapters
 
 import android.app.Activity
-import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -12,14 +11,13 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
-import com.safari.drfoot.utility.Navigator
 import com.safari.drfoot.R
-import com.safari.drfoot.activities.ScenarioActivity
 import com.safari.drfoot.entities.Person
+import com.safari.drfoot.utilities.contracts.MyCallback
 
 const val PERSON_ID_KEY = "personId"
 
-class PersonAdapter(private val context: Activity, private val mDataset: List<Person>)
+class PersonAdapter(private val context: Activity, private val mDataset: List<Person>, private val callback: MyCallback<Int>)
     : RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -56,9 +54,7 @@ class PersonAdapter(private val context: Activity, private val mDataset: List<Pe
             holder.lock.visibility = View.INVISIBLE
             holder.image.alpha = 1f
             holder.root.setOnClickListener {
-                val bundle = Bundle()
-                bundle.putInt(PERSON_ID_KEY, person.id)
-                Navigator.withBundle(bundle).changeActivityFade(context, ScenarioActivity::class.java, false)
+                callback.onSuccess(person.id);
             }
         }
     }

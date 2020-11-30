@@ -1,6 +1,7 @@
 package com.safari.drfoot.adapters
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
@@ -16,13 +17,14 @@ import com.daimajia.androidanimations.library.YoYo
 import com.safari.drfoot.utility.Navigator
 import com.safari.drfoot.R
 import com.safari.drfoot.activities.GameLevelActivity
+import com.safari.drfoot.activities.LeafSectionActivity
 import com.safari.drfoot.entities.GameLevel
 import com.safari.drfoot.entities.Section
+import com.safari.drfoot.utilities.contracts.MyCallback
+import retrofit2.Response
 
-const val SECTION_ID = "sectionId"
-const val SECTION_KEY = "sectionKey"
 
-class SectionAdapter(private val context: Activity, private val mDataset: List<Section>)
+class SectionAdapter(private val context: Context, private val mDataset: List<Section>, private val callback: MyCallback<Int>)
     : RecyclerView.Adapter<SectionAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -38,15 +40,15 @@ class SectionAdapter(private val context: Activity, private val mDataset: List<S
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val content = mDataset[position]
+        val section = mDataset[position]
 
-        holder.title.text = content.name
+        holder.title.text = section.name
 
-        if (!TextUtils.isEmpty(content.image)) {
-            Glide.with(context).load(content.image).into(holder.image)
+        if (!TextUtils.isEmpty(section.image)) {
+            Glide.with(context).load(section.image).into(holder.image)
         }
 
-        if (content.isLocked) {
+        if (section.isLocked) {
             holder.lock.visibility = View.VISIBLE
             holder.title.setTextColor(ContextCompat.getColor(context, R.color.grey))
 
@@ -56,14 +58,14 @@ class SectionAdapter(private val context: Activity, private val mDataset: List<S
         }
 
         holder.root.setOnClickListener {
-            if (content.isLocked) {
+            if (section.isLocked) {
                 YoYo.with(Techniques.Tada).playOn(holder.lock)
                 return@setOnClickListener
             }
-            val bundle = Bundle()
-            bundle.putInt(GAMELEVEL_ID_KEY, content.id)
-            bundle.putString(CATEGORY_KEY, content.name)
-            Navigator.withBundle(bundle).changeActivityFade(context, GameLevelActivity::class.java, false)
+
+            callback.onSuccess(section.id)
+
+
         }
     }
 

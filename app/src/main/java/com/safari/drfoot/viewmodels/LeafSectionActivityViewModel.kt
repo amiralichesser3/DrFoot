@@ -7,10 +7,12 @@ import com.safari.drfoot.entities.*
 import com.safari.drfoot.repositories.*
 import javax.inject.Inject
 
-class LeafSectionActivityViewModel @Inject constructor(private val meRepo: MeRepository) : ViewModel()  {
+class LeafSectionActivityViewModel @Inject constructor(private val meRepo: MeRepository, private val personRepo: PersonRepository) : ViewModel()  {
     lateinit var me: LiveData<Me>
+    lateinit var patient: LiveData<Person>
 
-    fun init() {
+    fun init(patientId: Int) {
         me = meRepo.load()
+        patient = personRepo.load(patientId)
     }
 }

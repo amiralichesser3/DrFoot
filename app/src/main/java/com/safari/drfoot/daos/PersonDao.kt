@@ -12,6 +12,9 @@ interface PersonDao {
     @Query("SELECT * FROM Person WHERE id in (:ids)")
     fun load(ids: List<Int>): LiveData<List<Person>>
 
+    @Query("SELECT * FROM Person WHERE id = :id")
+    fun load(id: Int): LiveData<Person>
+
     @Query("SELECT * FROM Person")
     fun load(): LiveData<List<Person>>
 

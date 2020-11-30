@@ -4,11 +4,13 @@ import android.animation.Animator
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import com.bumptech.glide.Glide
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.safari.drfoot.R
 import com.safari.drfoot.fragments.PersonFragment
 import com.safari.drfoot.utility.InjectorActivity
+import com.safari.drfoot.utility.SharedPreferencesHelper
 import com.safari.drfoot.viewmodels.LeafSectionActivityViewModel
 import kotlinx.android.synthetic.main.activity_leaf_section.*
 import kotlinx.android.synthetic.main.activity_leaf_section.doctorImage
@@ -17,6 +19,7 @@ import java.util.*
 const val SECTION_KEY = "sectionKey"
 class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
     var secondsPassed: Int = 0
+    var doctorHint = ""
     private var rootSectionId: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +28,20 @@ class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
             rootSectionId = it.getInt(SECTION_KEY)
             loadFragment(PersonFragment.newInstance(rootSectionId), false)
         }
+        doctorImage.setOnClickListener {
+            makeDoctorFootSay(doctorHint)
+        }
+    }
+
+    fun loadPatientAvatar(patientId: Int) {
+        viewModel.init(patientId)
+        viewModel.patient.observe(this, android.arch.lifecycle.Observer { person ->
+            person?.let{ p ->
+                p.imageLocal?.let { image ->
+                    Glide.with(applicationContext!!).load(image).into(patientImage)
+                }
+            }
+        })
     }
 
     fun makeDoctorFootSay(s: String) {
@@ -50,6 +67,10 @@ class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
             }
 
         })
+    }
+
+    fun setHint(hint: String) {
+        this.doctorHint = hint;
     }
 
     fun startTimer() {
@@ -79,12 +100,4 @@ class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
         }
         transaction.commit()
     }
-
-//    override fun onBackPressed() {
-//        if (supportFragmentManager.backStackEntryCount > 2) {
-//            supportFragmentManager.popBackStack()
-//            return
-//        }
-//        super.onBackPressed()
-//    }
 }

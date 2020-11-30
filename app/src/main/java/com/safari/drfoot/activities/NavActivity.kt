@@ -22,6 +22,7 @@ import androidx.navigation.Navigator
 import com.bumptech.glide.Glide
 import com.safari.drfoot.R
 import com.safari.drfoot.utility.InjectorActivity
+import com.safari.drfoot.utility.SharedPreferencesHelper
 import com.safari.drfoot.viewmodels.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_nav.*
 import kotlinx.android.synthetic.main.nav_header_nav.*
@@ -43,6 +44,7 @@ class NavActivity : InjectorActivity<MainActivityViewModel>() {
             nameText.text = it?.name
             emailText.text = it?.email
         })
+        SharedPreferencesHelper.setString(applicationContext, "parent", "personId", "-1")
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)

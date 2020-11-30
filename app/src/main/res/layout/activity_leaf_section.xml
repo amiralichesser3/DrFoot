@@ -3,27 +3,23 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:padding="@dimen/bigmargin"
+        android:paddingTop="@dimen/bigmargin"
         tools:context=".activities.ScenarioActivity">
 
     <ImageView
+            android:layout_marginRight="@dimen/bigmargin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_doctor_48"
             android:id="@+id/doctorImage"
             android:layout_alignParentRight="true" />
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/doctorText"
-            android:layout_toLeftOf="@+id/doctorImage"
-            android:layout_margin="12dp"
-            android:text="Hi!"
-            android:background="@drawable/bubble"/>
+
 
     <LinearLayout
+            android:layout_marginLeft="@dimen/bigmargin"
             android:id="@+id/topLinear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,21 +46,44 @@
             <ImageView
                     android:layout_width="42dp"
                     android:layout_height="42dp"
-                    android:id="@+id/coinImage"
-                    android:src="@drawable/starcoin"/>
-            <TextView android:id="@+id/coinTextView"
-                    android:layout_marginLeft="8dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"/>
+                    android:id="@+id/patientImage"
+                    />
+<!--            <TextView android:id="@+id/coinTextView"-->
+<!--                    android:layout_marginLeft="8dp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="0"/>-->
         </LinearLayout>
 
     </LinearLayout>
     <FrameLayout
+            android:padding="@dimen/smallmargin"
             android:id="@+id/fragmentContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/topLinear"
+            android:layout_marginBottom="@dimen/biggestmargin"
             android:layout_marginTop="@dimen/smallmargin">
     </FrameLayout>
+    <TextView
+            android:layout_marginRight="@dimen/biggestmargin"
+            android:layout_marginLeft="@dimen/smallmargin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/doctorText"
+            android:textStyle="bold"
+            android:textSize="@dimen/smalltext"
+            android:layout_alignParentRight="true"
+            android:text="Good Luck!"
+            android:layout_marginTop="@dimen/bigmargin"
+            android:background="@drawable/bubble"/>
+    <android.support.v7.widget.AppCompatButton
+            android:layout_gravity="bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/nextStageButton"
+            android:background="@color/grey2"
+            android:text="Next Stage"/>
 </RelativeLayout>

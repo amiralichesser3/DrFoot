@@ -40,6 +40,7 @@ class PersonFragment : InjectorFragment<PersonFragmentViewModel>() {
             recyclerView.adapter = PersonAdapter(activity as Activity, it!!, object: MyCallback<Int> {
                 override fun onSuccess(personId: Int) {
                     SharedPreferencesHelper.setString(context, "parent", "personId", personId.toString())
+                    (activity as LeafSectionActivity).loadPatientAvatar(personId)
                     (activity as LeafSectionActivity).startTimer()
                     (activity as LeafSectionActivity).makeDoctorFootSay("Start!")
                     (activity as LeafSectionActivity).loadFragment(LeafSectionFragment.newInstance(rootSectionId), true)

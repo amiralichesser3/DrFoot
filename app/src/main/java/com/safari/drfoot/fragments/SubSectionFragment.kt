@@ -42,6 +42,8 @@ class SubSectionFragment : InjectorFragment<SubSectionFragmentViewModel>() {
         arguments?.let {
             leafSectionId = it.getInt("leafSectionId")
         }
+        (activity as LeafSectionActivity).makeDoctorFootSay("")
+        (activity as LeafSectionActivity).setHint("")
         recyclerView.layoutManager = LinearLayoutManager(context)
         viewModel.init(leafSectionId)
         viewModel.subsections.observe(this, Observer {

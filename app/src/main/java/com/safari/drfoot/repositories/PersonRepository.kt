@@ -14,6 +14,10 @@ class PersonRepository @Inject constructor(private val personDao: PersonDao) {
         return personDao.count() != 0
     }
 
+    fun load(id: Int): LiveData<Person> {
+        return personDao.load(id)
+    }
+
     fun load(ids: List<Int>): LiveData<List<Person>> {
         return personDao.load(ids)
     }

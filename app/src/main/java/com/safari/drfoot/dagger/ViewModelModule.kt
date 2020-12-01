@@ -77,6 +77,10 @@ internal abstract class ViewModelModule {
     @ViewModelKey(SubSectionFragmentViewModel::class)
     internal abstract fun bindSubSectionFragmentViewModel(subSectionFragmentViewModel: SubSectionFragmentViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(DiagnosisFragmentViewModel::class)
+    internal abstract fun bindDiagnosisFragmentViewModel(diagnosisFragmentViewModel: DiagnosisFragmentViewModel): ViewModel
 
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

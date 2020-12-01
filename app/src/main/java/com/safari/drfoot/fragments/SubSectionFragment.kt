@@ -21,7 +21,10 @@ import com.safari.drfoot.utility.Toaster
 import com.safari.drfoot.viewmodels.LeafSectionActivityViewModel
 import com.safari.drfoot.viewmodels.LeafSectionFragmentViewModel
 import com.safari.drfoot.viewmodels.SubSectionFragmentViewModel
+import kotlinx.android.synthetic.main.fragment_leaf_section.*
 import kotlinx.android.synthetic.main.fragment_person.*
+import kotlinx.android.synthetic.main.fragment_person.recyclerView
+import kotlinx.android.synthetic.main.recycler_gamelevels.*
 
 class SubSectionFragment : InjectorFragment<SubSectionFragmentViewModel>() {
 
@@ -42,11 +45,14 @@ class SubSectionFragment : InjectorFragment<SubSectionFragmentViewModel>() {
         arguments?.let {
             leafSectionId = it.getInt("leafSectionId")
         }
-        (activity as LeafSectionActivity).makeDoctorFootSay("")
-        (activity as LeafSectionActivity).setHint("")
         recyclerView.layoutManager = LinearLayoutManager(context)
         viewModel.init(leafSectionId)
         viewModel.subsections.observe(this, Observer {
+            if (it!!.isEmpty()) {
+                ucImage.alpha = 1f
+            } else {
+                ucImage.alpha = 0f
+            }
             recyclerView.adapter = SubSectionAdapter(it!!, object: MyCallback<SubSection> {
                 override fun onSuccess(param: SubSection) {
                     (activity as LeafSectionActivity).loadFragment(InfoFragment.newInstance(param), true)
@@ -58,6 +64,12 @@ class SubSectionFragment : InjectorFragment<SubSectionFragmentViewModel>() {
 
             } )
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as LeafSectionActivity).makeDoctorFootSay("")
+        (activity as LeafSectionActivity).setHint("")
     }
 
     companion object {

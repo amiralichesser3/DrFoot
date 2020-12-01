@@ -4,13 +4,14 @@ import android.animation.Animator
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import com.bumptech.glide.Glide
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.safari.drfoot.R
+import com.safari.drfoot.fragments.DiagnosisFragment
 import com.safari.drfoot.fragments.PersonFragment
 import com.safari.drfoot.utility.InjectorActivity
-import com.safari.drfoot.utility.SharedPreferencesHelper
 import com.safari.drfoot.viewmodels.LeafSectionActivityViewModel
 import kotlinx.android.synthetic.main.activity_leaf_section.*
 import kotlinx.android.synthetic.main.activity_leaf_section.doctorImage
@@ -19,7 +20,7 @@ import java.util.*
 const val SECTION_KEY = "sectionKey"
 class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
     var secondsPassed: Int = 0
-    var doctorHint = ""
+    private var doctorHint = ""
     private var rootSectionId: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,17 @@ class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
         doctorImage.setOnClickListener {
             makeDoctorFootSay(doctorHint)
         }
+        nextStageButton.setOnClickListener {
+            loadFragment(DiagnosisFragment(), true)
+        }
+    }
+
+    fun hideNextStageButton() {
+        nextStageButton.animate().translationY(600f)
+    }
+
+    fun shownextStageButton() {
+        nextStageButton.animate().translationY(0f)
     }
 
     fun loadPatientAvatar(patientId: Int) {
@@ -45,16 +57,19 @@ class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
     }
 
     fun makeDoctorFootSay(s: String) {
-        YoYo.with(Techniques.Tada).playOn(doctorImage)
+        if (s.isNotEmpty()) {
+            YoYo.with(Techniques.Tada).playOn(doctorImage)
+        }
+
         doctorText.animate().alpha(0f).setListener(object: Animator.AnimatorListener {
             override fun onAnimationRepeat(p0: Animator?) {
 
             }
 
             override fun onAnimationEnd(p0: Animator?) {
-                if (!s.isNullOrEmpty()) {
+                if (s.isNotEmpty()) {
                     doctorText.animate().alpha(1f).setListener(null)
-                    doctorText.setText(s)
+                    doctorText.text = s
                 }
             }
 
@@ -70,7 +85,7 @@ class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
     }
 
     fun setHint(hint: String) {
-        this.doctorHint = hint;
+        this.doctorHint = hint
     }
 
     fun startTimer() {

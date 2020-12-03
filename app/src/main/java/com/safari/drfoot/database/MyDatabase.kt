@@ -15,7 +15,7 @@ import com.safari.drfoot.entities.*
     Section::class,
     SubSection::class,
     Answer::class,
-    Me::class], version = 14)
+    Me::class], version = 15)
 abstract class MyDatabase : RoomDatabase() {
     abstract fun gameLevelDao(): GameLevelDao
     abstract fun personDao(): PersonDao

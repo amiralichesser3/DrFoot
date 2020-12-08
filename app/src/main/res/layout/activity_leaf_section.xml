@@ -16,6 +16,29 @@
             android:id="@+id/doctorImage"
             android:layout_alignParentRight="true" />
 
+    <LinearLayout
+            android:gravity="center"
+            android:padding="@dimen/smallmargin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+        android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+        android:layout_below="@+id/doctorImage"
+        android:layout_marginRight="@dimen/smallmargin">
+        <android.support.v7.widget.AppCompatImageView
+                android:layout_width="@dimen/bigmargin"
+                android:layout_height="@dimen/bigmargin"
+            app:srcCompat="@drawable/coin24"
+            android:id="@+id/coinImage"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:layout_height="wrap_content"
+            android:id="@+id/coinTextView"
+            android:text=" x 4"
+            android:textStyle="italic"
+            android:textSize="@dimen/smalltext"/>
+    </LinearLayout>
 
 
     <LinearLayout
@@ -67,7 +90,7 @@
     </FrameLayout>
     <TextView
             android:layout_marginRight="@dimen/biggestmargin"
-            android:layout_marginLeft="@dimen/smallmargin"
+            android:layout_marginLeft="@dimen/biggestmargin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/doctorText"
@@ -83,7 +106,23 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:textColor="@color/colorPrimary"
-            android:id="@+id/nextStageButton"
+            android:id="@+id/toDiagnosisButton"
             android:background="@color/grey2"
-            android:text="Next Stage"/>
+            android:text="Go To Diagnosis"/>
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To Management Section"
+        android:layout_alignParentBottom="true"
+        android:background="@color/grey2"
+        android:textColor="@color/colorPrimary"
+        android:id="@+id/toManagementButton"/>
+    <android.support.v7.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Finish!"
+            android:layout_alignParentBottom="true"
+            android:background="@color/grey2"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/finishButton"/>
 </RelativeLayout>

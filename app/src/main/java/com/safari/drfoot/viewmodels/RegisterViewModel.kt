@@ -121,23 +121,20 @@ class RegisterViewModel @Inject constructor(private val meRepo: MeRepository,
 
             if (!answerRepo.exists()) {
                 var answers = arrayListOf(
-                    Answer(1, 1, "Diagnosis",  false, 5,"No Ulcers", null),
-                    Answer(2, 1, "Diagnosis",  true, 5,"At risk of DFU", null),
-                    Answer(3, 1, "Diagnosis",  false, 5,"Neuropathic DFU", null),
-                    Answer(4, 1, "Diagnosis",  false, 5,"Ischemic DFU", null),
-                    Answer(5, 1, "Diagnosis",  false, 5,"Neuroischemic DFU", null),
-                    Answer(6, 1, "Diagnosis",  false, 5,"Infectious DFU", null),
-                    Answer(7, 1, "Diagnosis",  false, 5,"Charcot foot", null),
+                    Answer(1, 1, "Diagnosis",  false, 1,"No Ulcers", null),
+                    Answer(2, 1, "Diagnosis",  true, 1,"At risk of DFU", null),
+                    Answer(3, 1, "Diagnosis",  false, 1,"Neuropathic DFU", null),
+                    Answer(4, 1, "Diagnosis",  false, 1,"Ischemic DFU", null),
+                    Answer(5, 1, "Diagnosis",  false, 1,"Neuroischemic DFU", null),
+                    Answer(6, 1, "Diagnosis",  false, 1,"Infectious DFU", null),
+                    Answer(7, 1, "Diagnosis",  false, 1,"Charcot foot", null),
 
-                    Answer(8, 1, "Management",  true, 5,"Self-care education for the patient", null),
-                    Answer(9, 1, "Management",  true, 5,"Periodic examinations", null),
-                    Answer(10, 1, "Management",  false, 5,"Debridement", null),
-                    Answer(11, 1, "Management",  false, 5,"Dressing", null),
-                    Answer(12, 1, "Management",  false, 5,"Antibiotics", null),
-                    Answer(13, 1, "Management",  false, 5,"Revascularization", null),
-                    Answer(14, 1, "Management",  true, 5,"Offloading", null),
-                    Answer(15, 1, "Management",  false, 5,"Refer to other specialists", null),
-                    Answer(16, 1, "Management",  false, 5,"Rehabilitation", null)
+                    Answer(8, 1, "Management",  true, 1,"Metabolic Control", null),
+                    Answer(9, 1, "Management",  true, 1,"Educational Control", null),
+                    Answer(10, 1, "Management",  true, 1,"Mechanical Control", null),
+                    Answer(11, 1, "Management",  false, 1,"Wound Control (Dressing, Debridement)", null),
+                    Answer(12, 1, "Management",  false, 1,"Vascular Control", null),
+                    Answer(13, 1, "Management",  false, 1,"Microbiological Control", null)
                 )
                 answerRepo.save(answers)
             }

@@ -10,6 +10,7 @@ import javax.inject.Inject
 
 class MainActivityViewModel @Inject constructor(private val gameLevelRepo: GameLevelRepository,
                                                 private val personRepo: PersonRepository,
+                                                private val currentStateRepo: CurrentStateRepository,
                                                 private val meRepo: MeRepository,
                                                 private val personGameLevelRepo: PersonGameLevelRepository,
                                                 private val demographicRepository: DemographicRepository,
@@ -135,6 +136,9 @@ class MainActivityViewModel @Inject constructor(private val gameLevelRepo: GameL
                 examinationRepository.save(examinations)
             }
 
+            if (!currentStateRepo.exists()) {
+                currentStateRepo.save(CurrentState(1, -1, -1, 4))
+            }
         }
     }
 }

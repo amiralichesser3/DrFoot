@@ -11,9 +11,9 @@ import android.view.ViewGroup
 import com.safari.drfoot.R
 import com.safari.drfoot.activities.LeafSectionActivity
 import com.safari.drfoot.adapters.SectionAdapter
+import com.safari.drfoot.entities.CurrentState
 import com.safari.drfoot.utilities.contracts.MyCallback
 import com.safari.drfoot.utility.InjectorFragment
-import com.safari.drfoot.utility.SharedPreferencesHelper
 import com.safari.drfoot.viewmodels.LeafSectionFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_person.*
 
@@ -41,7 +41,6 @@ class LeafSectionFragment : InjectorFragment<LeafSectionFragmentViewModel>() {
         viewModel.leafSections.observe(this, Observer {
             recyclerView.adapter = SectionAdapter(activity as Activity, it!!, object: MyCallback<Int> {
                 override fun onSuccess(selectedLeafSectionId: Int) {
-                    SharedPreferencesHelper.setString(context, "parent", "selectedLeafSectionId", selectedLeafSectionId.toString())
                     (activity as LeafSectionActivity).loadFragment(SubSectionFragment.newInstance(selectedLeafSectionId), true)
                 }
 
@@ -51,6 +50,16 @@ class LeafSectionFragment : InjectorFragment<LeafSectionFragmentViewModel>() {
 
             })
         })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        (activity as LeafSectionActivity).hideDiagnosisButton()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as LeafSectionActivity).showDiagnosisButton()
     }
 
     companion object {

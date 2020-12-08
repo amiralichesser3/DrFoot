@@ -15,8 +15,17 @@ interface PersonDao {
     @Query("SELECT * FROM Person WHERE id = :id")
     fun load(id: Int): LiveData<Person>
 
+    @Query("SELECT * FROM Person WHERE id = :id")
+    fun loadSync(id: Int): Person?
+
     @Query("SELECT * FROM Person")
     fun load(): LiveData<List<Person>>
+
+    @Query("SELECT * FROM Person")
+    fun loadSync(): List<Person>
+
+    @Query("SELECT id FROM Person")
+    fun loadIds(): List<Int>
 
     @Query("SELECT * FROM Person WHERE id = -1")
     fun loadNone(): LiveData<List<Person>>

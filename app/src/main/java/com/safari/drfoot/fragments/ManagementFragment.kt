@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.os.Handler
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -20,26 +21,25 @@ import com.safari.drfoot.entities.CoinPerSectionPerPerson
 import com.safari.drfoot.entities.CurrentState
 import com.safari.drfoot.utilities.contracts.MyCallback
 import com.safari.drfoot.utility.InjectorFragment
-import com.safari.drfoot.viewmodels.DiagnosisFragmentViewModel
+import com.safari.drfoot.viewmodels.ManagementFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_diagnosis.*
 
-class DiagnosisFragment : InjectorFragment<DiagnosisFragmentViewModel>() {
+class ManagementFragment : InjectorFragment<ManagementFragmentViewModel>() {
 
     lateinit var currentState: CurrentState
     var coinCount = 4
-    var cpss: CoinPerSectionPerPerson? = null
+    lateinit var cpss: CoinPerSectionPerPerson
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_diagnosis, container, false)
+        return inflater.inflate(R.layout.fragment_management, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Glide.with(context!!).load("https://cdn2.iconfinder.com/data/icons/medical-butterscotch-vol-1/512/Diagnostics-512.png").into(diagnosisIconImage)
         Handler().postDelayed({
             if (splash != null) {
                 YoYo.with(Techniques.FadeOut).duration(500).withListener(object: Animator.AnimatorListener {
@@ -73,7 +73,7 @@ class DiagnosisFragment : InjectorFragment<DiagnosisFragmentViewModel>() {
         })
         viewModel.currentState.observe(this, Observer {
             it?.let {
-                currentState = it
+
             }
         })
         viewModel.diagnosisAnswers.observe(this, Observer {
@@ -82,12 +82,9 @@ class DiagnosisFragment : InjectorFragment<DiagnosisFragmentViewModel>() {
                     override fun onSuccess(param: Answer) {
                         currentState.coinCount += coinCount
                         viewModel.saveCurrentState(currentState)
-                        cpss?.let { c ->
-                            c.coinCount += coinCount
-                            viewModel.saveCpss(c)
-                        }
-
-                        (activity as LeafSectionActivity).makeDoctorFootSay("Correct!")
+                        cpss.coinCount += coinCount
+                        viewModel.saveCpss(cpss)
+                        (activity as LeafSectionActivity).makeDoctorFootSay("Bingo!")
                     }
 
                     override fun onError(param: Answer) {
@@ -96,31 +93,35 @@ class DiagnosisFragment : InjectorFragment<DiagnosisFragmentViewModel>() {
                             coinCount--
                         }
                     }
-
                 }, object: MyCallback<Boolean> {
                     override fun onSuccess(param: Boolean) {
                         if (param) {
-                            (activity as LeafSectionActivity).showToManagementButton()
+                            (activity as LeafSectionActivity).showFinishButton()
                         }
                     }
 
                     override fun onError(param: Boolean) {
                         // Ignored
                     }
+
                 })
+            }
+        })
+        viewModel.currentState.observe(this, Observer {
+            it?.let {
+                currentState = it
             }
         })
     }
 
     override fun onResume() {
         super.onResume()
-        (activity as LeafSectionActivity).makeDoctorFootSay("What is your diagnosis?")
+        (activity as LeafSectionActivity).makeDoctorFootSay("How would you manage this case?")
     }
 
     override fun onPause() {
         super.onPause()
         (activity as LeafSectionActivity).makeDoctorFootSay("")
-        (activity as LeafSectionActivity).hideToManagementButton()
+        (activity as LeafSectionActivity).hideFinishButton()
     }
-
 }

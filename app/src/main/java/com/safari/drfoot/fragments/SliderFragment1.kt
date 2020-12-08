@@ -23,7 +23,7 @@ class SliderFragment1 : InjectorFragment<RegisterViewModel>(), View.OnClickListe
     private var selectedView: View? = null
     private var me: Me? = null
 
-    var mp: MediaPlayer? = null
+    private var mp: MediaPlayer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {

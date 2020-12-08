@@ -11,15 +11,16 @@ import android.view.ViewGroup
 import com.safari.drfoot.R
 import com.safari.drfoot.activities.LeafSectionActivity
 import com.safari.drfoot.adapters.PersonAdapter
+import com.safari.drfoot.entities.CurrentState
 import com.safari.drfoot.utilities.contracts.MyCallback
 import com.safari.drfoot.utility.InjectorFragment
-import com.safari.drfoot.utility.SharedPreferencesHelper
 import com.safari.drfoot.viewmodels.PersonFragmentViewModel
 import kotlinx.android.synthetic.main.fragment_person.*
 
 class PersonFragment : InjectorFragment<PersonFragmentViewModel>() {
 
     var rootSectionId: Int = -1;
+    lateinit var currentState: CurrentState;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,12 +38,12 @@ class PersonFragment : InjectorFragment<PersonFragmentViewModel>() {
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         viewModel.init()
         viewModel.people.observe(this, Observer {
-            recyclerView.adapter = PersonAdapter(activity as Activity, it!!, object: MyCallback<Int> {
+            recyclerView.adapter = PersonAdapter(activity as Activity, it!!, viewModel.cpssList, object: MyCallback<Int> {
                 override fun onSuccess(personId: Int) {
-                    SharedPreferencesHelper.setString(context, "parent", "personId", personId.toString())
-                    (activity as LeafSectionActivity).loadPatientAvatar(personId)
+                    currentState.selectedPersonId = personId
+                    viewModel.saveCurrentState(currentState)
                     (activity as LeafSectionActivity).startTimer()
-                    (activity as LeafSectionActivity).makeDoctorFootSay("Start!")
+                    (activity as LeafSectionActivity).makeDoctorFootSay("Let's go!")
                     (activity as LeafSectionActivity).loadFragment(LeafSectionFragment.newInstance(rootSectionId), true)
                 }
 
@@ -51,6 +52,12 @@ class PersonFragment : InjectorFragment<PersonFragmentViewModel>() {
                 }
 
             })
+        })
+
+        viewModel.currentState.observe(this, Observer {
+            it?.let {
+                currentState = it;
+            }
         })
     }
 

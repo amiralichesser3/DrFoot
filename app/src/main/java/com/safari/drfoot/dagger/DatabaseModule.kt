@@ -79,6 +79,18 @@ internal class DatabaseModule {
 
     @Provides
     @Singleton
+    fun provideCurrentStateDao(database: MyDatabase): CurrentStateDao {
+        return database.currentStateDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCpsppDao(database: MyDatabase): CpsppDao {
+        return database.cpsppDao()
+    }
+
+    @Provides
+    @Singleton
     fun provideDatabase(app: Application): MyDatabase {
         return Room.databaseBuilder(app, MyDatabase::class.java, "my-db").allowMainThreadQueries().fallbackToDestructiveMigration().build()
     }

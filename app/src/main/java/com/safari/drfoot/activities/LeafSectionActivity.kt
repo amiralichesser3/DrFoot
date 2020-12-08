@@ -2,14 +2,18 @@ package com.safari.drfoot.activities
 
 import android.animation.Animator
 import android.annotation.SuppressLint
+import android.arch.lifecycle.Observer
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.util.Log
 import com.bumptech.glide.Glide
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.safari.drfoot.R
+import com.safari.drfoot.entities.CoinPerSectionPerPerson
+import com.safari.drfoot.entities.CurrentState
 import com.safari.drfoot.fragments.DiagnosisFragment
+import com.safari.drfoot.fragments.ManagementFragment
 import com.safari.drfoot.fragments.PersonFragment
 import com.safari.drfoot.utility.InjectorActivity
 import com.safari.drfoot.viewmodels.LeafSectionActivityViewModel
@@ -17,43 +21,77 @@ import kotlinx.android.synthetic.main.activity_leaf_section.*
 import kotlinx.android.synthetic.main.activity_leaf_section.doctorImage
 import kotlinx.android.synthetic.main.activity_leaf_section.timerText
 import java.util.*
+
 const val SECTION_KEY = "sectionKey"
 class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
+    private var mp: MediaPlayer? = null
+    lateinit var cpss: CoinPerSectionPerPerson
+    lateinit var currentState: CurrentState
     var secondsPassed: Int = 0
     private var doctorHint = ""
     private var rootSectionId: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leaf_section)
+        mp = MediaPlayer.create(applicationContext, R.raw.coin)
         intent.extras?.let {
             rootSectionId = it.getInt(SECTION_KEY)
             loadFragment(PersonFragment.newInstance(rootSectionId), false)
         }
+
+        viewModel.init()
+
+        viewModel.cpss.observe(this, Observer {
+            it?.let {
+                cpss = it
+            }
+        })
+
+        viewModel.currentState.observe(this, Observer<CurrentState> {
+            it?.let {
+                currentState = it
+                val coinText = " X ${it.coinCount}"
+                if (coinTextView.text != coinText) {
+                    YoYo.with(Techniques.BounceIn).playOn(coinImage)
+                    coinTextView.text = coinText
+                    makeCoinSound()
+                }
+
+                viewModel.loadPatientSync(it.selectedPersonId)?.imageLocal?.let { avatar ->
+                    Glide.with(applicationContext!!).load(avatar).into(patientImage)
+                }
+
+                viewModel.seedCpss(it)
+            }
+        })
+
+        hideToManagementButton()
+        hideDiagnosisButton()
+        hideFinishButton()
+
+        toDiagnosisButton.setOnClickListener {
+            currentState.coinCount -= cpss.coinCount
+            cpss.coinCount = 0
+            viewModel.saveCurrentState(currentState)
+            viewModel.saveCpss(cpss)
+            loadFragment(DiagnosisFragment(), true)
+        }
+
+        toManagementButton.setOnClickListener {
+            loadFragment(ManagementFragment(), true)
+        }
+
+        finishButton.setOnClickListener{
+            hideFinishButton()
+        }
+
         doctorImage.setOnClickListener {
             makeDoctorFootSay(doctorHint)
         }
-        nextStageButton.setOnClickListener {
-            loadFragment(DiagnosisFragment(), true)
-        }
     }
 
-    fun hideNextStageButton() {
-        nextStageButton.animate().translationY(600f)
-    }
-
-    fun shownextStageButton() {
-        nextStageButton.animate().translationY(0f)
-    }
-
-    fun loadPatientAvatar(patientId: Int) {
-        viewModel.init(patientId)
-        viewModel.patient.observe(this, android.arch.lifecycle.Observer { person ->
-            person?.let{ p ->
-                p.imageLocal?.let { image ->
-                    Glide.with(applicationContext!!).load(image).into(patientImage)
-                }
-            }
-        })
+    private fun makeCoinSound() {
+        mp?.start()
     }
 
     fun makeDoctorFootSay(s: String) {
@@ -114,5 +152,29 @@ class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
             t.addToBackStack(fragment.tag)
         }
         transaction.commit()
+    }
+
+    fun hideToManagementButton() {
+        toManagementButton.animate().translationY(200f)
+    }
+
+    fun showToManagementButton() {
+        toManagementButton.animate().translationY(0f)
+    }
+
+    fun showFinishButton() {
+        finishButton.animate().translationY(0f)
+    }
+
+    fun hideFinishButton() {
+        finishButton.animate().translationY(200f)
+    }
+
+    fun hideDiagnosisButton() {
+        toDiagnosisButton.animate().translationY(600f)
+    }
+
+    fun showDiagnosisButton() {
+        toDiagnosisButton.animate().translationY(0f)
     }
 }

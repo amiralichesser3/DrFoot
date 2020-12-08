@@ -27,16 +27,16 @@ class GameLevelActivity : InjectorActivity<GameLevelActivityViewModel>() {
         val peopleObserver = Observer<List<Person>> {
             if (it == null || it.isEmpty()) return@Observer
             recyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
-            recyclerView.adapter = PersonAdapter(this@GameLevelActivity, it, object: MyCallback<Int> {
-                override fun onSuccess(param: Int) {
-                    // Ignored
-                }
-
-                override fun onError(param: Int) {
-                    // Ignored
-                }
-
-            })
+//            recyclerView.adapter = PersonAdapter(this@GameLevelActivity, it, object: MyCallback<Int> {
+//                override fun onSuccess(param: Int) {
+//                    // Ignored
+//                }
+//
+//                override fun onError(param: Int) {
+//                    // Ignored
+//                }
+//
+//            })
         }
 
         val gameLevelsObserver = Observer<List<PersonGameLevel>> {

@@ -15,7 +15,10 @@ import com.safari.drfoot.entities.*
     Section::class,
     SubSection::class,
     Answer::class,
-    Me::class], version = 15)
+    Me::class,
+    CurrentState::class,
+    CoinPerSectionPerPerson::class
+], version = 27)
 abstract class MyDatabase : RoomDatabase() {
     abstract fun gameLevelDao(): GameLevelDao
     abstract fun personDao(): PersonDao
@@ -28,4 +31,6 @@ abstract class MyDatabase : RoomDatabase() {
     abstract fun sectionDao(): SectionDao
     abstract fun subSectionDao(): SubSectionDao
     abstract fun answerDao(): AnswerDao
+    abstract fun currentStateDao(): CurrentStateDao
+    abstract fun cpsppDao(): CpsppDao
 }

@@ -57,5 +57,8 @@ abstract class FragmentBuildersModule {
     internal abstract fun contributeDiagnosisFragment(): DiagnosisFragment
 
     @ContributesAndroidInjector
+    internal abstract fun contributeManagementFragment(): ManagementFragment
+
+    @ContributesAndroidInjector
     internal abstract fun contributeHomeFragment(): HomeFragment
 }

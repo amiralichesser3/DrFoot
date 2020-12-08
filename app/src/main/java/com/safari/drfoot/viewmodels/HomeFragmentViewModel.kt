@@ -9,12 +9,18 @@ import javax.inject.Inject
 
 class HomeFragmentViewModel @Inject constructor(private val meRepo: MeRepository,
                                                 private val sectionRepo: SectionRepository,
-                                                private val subSectionRepo: SubSectionRepository) : ViewModel()  {
+                                                private val currentStateRepo: CurrentStateRepository) : ViewModel()  {
     lateinit var me: LiveData<Me>
     lateinit var rootSections: LiveData<List<Section>>
+    lateinit var currentState: LiveData<CurrentState>
 
     fun init() {
         me = meRepo.load()
         rootSections = sectionRepo.loadRoots()
+        currentState = currentStateRepo.load()
+    }
+
+    fun saveCurrentState(currentState: CurrentState) {
+        currentStateRepo.save(currentState)
     }
 }

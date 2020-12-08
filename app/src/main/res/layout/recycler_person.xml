@@ -10,7 +10,27 @@
         <ImageView android:id="@+id/lockImage" android:layout_width="wrap_content" android:layout_height="wrap_content"
                    app:srcCompat="@drawable/ic_lock_black_36dp" android:layout_gravity="center"/>
     </FrameLayout>
-    <TextView android:textSize="@dimen/bigtext" android:layout_width="wrap_content" android:layout_height="wrap_content"
+    <TextView android:textSize="@dimen/bigtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
               android:id="@+id/textView" android:layout_gravity="center"/>
-
+    <LinearLayout
+            android:id="@+id/coinFrame"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <android.support.v7.widget.AppCompatImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+            app:srcCompat="@drawable/coin24"/>
+        <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            android:id="@+id/coinTextView"
+            android:textStyle="italic"
+            android:textSize="@dimen/smallertext"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
 </LinearLayout>

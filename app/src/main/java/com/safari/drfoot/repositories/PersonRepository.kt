@@ -18,12 +18,25 @@ class PersonRepository @Inject constructor(private val personDao: PersonDao) {
         return personDao.load(id)
     }
 
+    fun loadSync(id: Int): Person? {
+        return personDao.loadSync(id)
+    }
+
     fun load(ids: List<Int>): LiveData<List<Person>> {
         return personDao.load(ids)
     }
 
     fun load(): LiveData<List<Person>> {
         return personDao.load()
+    }
+
+    fun loadSync(): List<Person> {
+        return personDao.loadSync()
+    }
+
+
+    fun loadIds(): List<Int> {
+        return personDao.loadIds()
     }
 
     fun loadNone(): LiveData<List<Person>> {

@@ -12,12 +12,15 @@ import com.bumptech.glide.Glide
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.safari.drfoot.R
+import com.safari.drfoot.entities.CoinPerSectionPerPerson
 import com.safari.drfoot.entities.Person
 import com.safari.drfoot.utilities.contracts.MyCallback
 
 const val PERSON_ID_KEY = "personId"
 
-class PersonAdapter(private val context: Activity, private val mDataset: List<Person>, private val callback: MyCallback<Int>)
+class PersonAdapter(private val context: Activity, private val mDataset: List<Person>,
+                    private val mDataset2: List<CoinPerSectionPerPerson>,
+                    private val callback: MyCallback<Int>)
     : RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -25,6 +28,8 @@ class PersonAdapter(private val context: Activity, private val mDataset: List<Pe
         val title: TextView = v.findViewById(R.id.textView)
         val image: ImageView = v.findViewById(R.id.imageView)
         val lock: ImageView = v.findViewById(R.id.lockImage)
+        val coinFrame: View = v.findViewById(R.id.coinFrame)
+        val coinTextView: TextView = v.findViewById(R.id.coinTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonAdapter.ViewHolder {
@@ -34,13 +39,30 @@ class PersonAdapter(private val context: Activity, private val mDataset: List<Pe
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val person = mDataset[position]
+        var coinCount: Int? = null
+
+        mDataset2.forEach {
+            if (it.personId == person.id) {
+                coinCount = it.coinCount
+            }
+        }
+
+        holder.coinFrame.visibility = View.INVISIBLE
+        coinCount?.let {
+            if (it == 0) return@let
+            holder.coinFrame.visibility = View.VISIBLE
+            val text = " X $it"
+            holder.coinTextView.text = text
+        }
 
         holder.title.text = person.name
 
         if (!TextUtils.isEmpty(person.imageUrl)) {
             Glide.with(context).load(person.imageUrl).into(holder.image)
         }  else {
-            Glide.with(context).load(person.imageLocal).into(holder.image)
+            person.imageLocal?.let {
+                holder.image.setImageResource(it)
+            }
         }
 
         if (person.isLocked) {

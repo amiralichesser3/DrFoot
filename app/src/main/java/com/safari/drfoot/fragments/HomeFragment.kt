@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import com.safari.drfoot.R
 import com.safari.drfoot.activities.LeafSectionActivity
 import com.safari.drfoot.adapters.SectionAdapter
+import com.safari.drfoot.entities.CurrentState
 import com.safari.drfoot.utilities.contracts.MyCallback
 import com.safari.drfoot.utility.InjectorFragment
 import com.safari.drfoot.utility.Navigator
@@ -20,6 +21,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 const val SECTION_KEY = "sectionKey"
 class HomeFragment : InjectorFragment<HomeFragmentViewModel>() {
+
+    lateinit var currentState: CurrentState
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,11 +35,18 @@ class HomeFragment : InjectorFragment<HomeFragmentViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.init()
+        viewModel.currentState.observe(this, Observer {
+            it?.let {
+                currentState = it
+            }
+        })
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         viewModel.rootSections.observe(this, Observer {
             it?.let {
                 recyclerView.adapter = SectionAdapter(context!!, it, object: MyCallback<Int> {
                     override fun onSuccess(param: Int) {
+                        currentState.selectedSectionId = param
+                        viewModel.saveCurrentState(currentState)
                         val bundle = Bundle()
                         bundle.putInt(SECTION_KEY, param)
                         Navigator.withBundle(bundle).changeActivityFade(activity as Activity, LeafSectionActivity::class.java, false)

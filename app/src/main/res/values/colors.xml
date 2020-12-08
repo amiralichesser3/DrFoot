@@ -6,6 +6,7 @@
     <color name="colorPrimaryDarkTransparent2">#CC2C3552</color>
     <color name="colorPrimaryTransparent">#AA3F4C6F</color>
     <color name="colorAccent">#16D8B5</color>
+    <color name="colorAccentTransparent">#6616D8B5</color>
     <color name="brightBlue">#48D3F0</color>
     <color name="transparent">#0000</color>
     <color name="white">#fff</color>

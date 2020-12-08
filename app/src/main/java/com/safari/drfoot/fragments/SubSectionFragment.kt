@@ -11,20 +11,14 @@ import android.view.ViewGroup
 
 import com.safari.drfoot.R
 import com.safari.drfoot.activities.LeafSectionActivity
-import com.safari.drfoot.adapters.SectionAdapter
 import com.safari.drfoot.adapters.SubSectionAdapter
 import com.safari.drfoot.entities.SubSection
 import com.safari.drfoot.utilities.contracts.MyCallback
 import com.safari.drfoot.utility.InjectorFragment
-import com.safari.drfoot.utility.SharedPreferencesHelper
-import com.safari.drfoot.utility.Toaster
-import com.safari.drfoot.viewmodels.LeafSectionActivityViewModel
-import com.safari.drfoot.viewmodels.LeafSectionFragmentViewModel
 import com.safari.drfoot.viewmodels.SubSectionFragmentViewModel
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_leaf_section.*
-import kotlinx.android.synthetic.main.fragment_person.*
 import kotlinx.android.synthetic.main.fragment_person.recyclerView
-import kotlinx.android.synthetic.main.recycler_gamelevels.*
 
 class SubSectionFragment : InjectorFragment<SubSectionFragmentViewModel>() {
 
@@ -45,7 +39,7 @@ class SubSectionFragment : InjectorFragment<SubSectionFragmentViewModel>() {
         arguments?.let {
             leafSectionId = it.getInt("leafSectionId")
         }
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
         viewModel.init(leafSectionId)
         viewModel.subsections.observe(this, Observer {
             if (it!!.isEmpty()) {
@@ -53,7 +47,7 @@ class SubSectionFragment : InjectorFragment<SubSectionFragmentViewModel>() {
             } else {
                 ucImage.alpha = 0f
             }
-            recyclerView.adapter = SubSectionAdapter(it!!, object: MyCallback<SubSection> {
+            recyclerView.adapter = SubSectionAdapter(context, it, object: MyCallback<SubSection> {
                 override fun onSuccess(param: SubSection) {
                     (activity as LeafSectionActivity).loadFragment(InfoFragment.newInstance(param), true)
                 }

@@ -30,6 +30,8 @@ class PersonAdapter(private val context: Activity, private val mDataset: List<Pe
         val lock: ImageView = v.findViewById(R.id.lockImage)
         val coinFrame: View = v.findViewById(R.id.coinFrame)
         val coinTextView: TextView = v.findViewById(R.id.coinTextView)
+        val timerFrame: View = v.findViewById(R.id.timerFrame)
+        val timerTextView: TextView = v.findViewById(R.id.timerTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonAdapter.ViewHolder {
@@ -40,19 +42,28 @@ class PersonAdapter(private val context: Activity, private val mDataset: List<Pe
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val person = mDataset[position]
         var coinCount: Int? = null
+        var timerText: String? = null
 
         mDataset2.forEach {
             if (it.personId == person.id) {
                 coinCount = it.coinCount
+                timerText = it.timer
             }
         }
 
         holder.coinFrame.visibility = View.INVISIBLE
+        holder.timerFrame.visibility = View.INVISIBLE
+
         coinCount?.let {
             if (it == 0) return@let
             holder.coinFrame.visibility = View.VISIBLE
             val text = " X $it"
             holder.coinTextView.text = text
+        }
+
+        timerText?.let {
+            holder.timerFrame.visibility = View.VISIBLE
+            holder.timerTextView.text = it
         }
 
         holder.title.text = person.name

@@ -25,7 +25,7 @@ class LeafSectionActivityViewModel @Inject constructor(private val meRepo: MeRep
     fun seedCpss(currentState: CurrentState) {
         val cpssSync = loadCpssSync(currentState.selectedPersonId, currentState.selectedSectionId)
         if (cpssSync == null) {
-            saveCpss(CoinPerSectionPerPerson(0, currentState.selectedPersonId, currentState.selectedSectionId, 0))
+            saveCpss(CoinPerSectionPerPerson(0, currentState.selectedPersonId, currentState.selectedSectionId, 0, null))
         }
     }
 

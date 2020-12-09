@@ -72,6 +72,7 @@ class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
         toDiagnosisButton.setOnClickListener {
             currentState.coinCount -= cpss.coinCount
             cpss.coinCount = 0
+            cpss.timer = null
             viewModel.saveCurrentState(currentState)
             viewModel.saveCpss(cpss)
             loadFragment(DiagnosisFragment(), true)
@@ -83,6 +84,8 @@ class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
 
         finishButton.setOnClickListener{
             hideFinishButton()
+            cpss.timer = timerText.text.toString()
+            viewModel.saveCpss(cpss)
         }
 
         doctorImage.setOnClickListener {

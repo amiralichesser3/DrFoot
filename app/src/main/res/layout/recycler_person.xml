@@ -16,6 +16,7 @@
             android:textColor="@color/black"
               android:id="@+id/textView" android:layout_gravity="center"/>
     <LinearLayout
+            android:layout_marginTop="4dp"
             android:id="@+id/coinFrame"
             android:layout_width="wrap_content"
             android:gravity="center"
@@ -32,5 +33,25 @@
             android:textStyle="italic"
             android:textSize="@dimen/smallertext"
             android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_marginTop="4dp"
+            android:id="@+id/timerFrame"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <android.support.v7.widget.AppCompatImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                app:srcCompat="@drawable/timer"/>
+        <android.support.v7.widget.AppCompatTextView
+                android:layout_marginLeft="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/timerTextView"
+                android:textStyle="italic"
+                android:textSize="@dimen/smallertext"
+                android:textColor="@color/colorPrimary"/>
     </LinearLayout>
 </LinearLayout>

@@ -7,4 +7,5 @@ import android.arch.persistence.room.PrimaryKey
 class CoinPerSectionPerPerson(@PrimaryKey(autoGenerate = true) val id: Int,
                               val personId: Int,
                               val sectionId: Int,
-                              var coinCount: Int)
+                              var coinCount: Int,
+                              var timer: String?)

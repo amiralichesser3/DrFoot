@@ -27,4 +27,7 @@ abstract class ActivitiesModule {
 
     @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
     internal abstract fun contributeLeafSectionActivity(): LeafSectionActivity
+
+    @ContributesAndroidInjector(modules = [FragmentBuildersModule::class])
+    internal abstract fun contributeFinishActivity(): FinishActivity
 }

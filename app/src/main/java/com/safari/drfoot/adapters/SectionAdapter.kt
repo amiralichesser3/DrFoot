@@ -44,8 +44,10 @@ class SectionAdapter(private val context: Context, private val mDataset: List<Se
 
         holder.title.text = section.name
 
-        if (!TextUtils.isEmpty(section.image)) {
+        if (section.image != null) {
             Glide.with(context).load(section.image).into(holder.image)
+        } else if (section.imageString != null) {
+            Glide.with(context).load(section.imageString).into(holder.image)
         }
 
         if (section.isLocked) {

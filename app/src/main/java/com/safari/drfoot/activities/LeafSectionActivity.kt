@@ -16,6 +16,7 @@ import com.safari.drfoot.fragments.DiagnosisFragment
 import com.safari.drfoot.fragments.ManagementFragment
 import com.safari.drfoot.fragments.PersonFragment
 import com.safari.drfoot.utility.InjectorActivity
+import com.safari.drfoot.utility.Navigator
 import com.safari.drfoot.viewmodels.LeafSectionActivityViewModel
 import kotlinx.android.synthetic.main.activity_leaf_section.*
 import kotlinx.android.synthetic.main.activity_leaf_section.doctorImage
@@ -86,6 +87,7 @@ class LeafSectionActivity : InjectorActivity<LeafSectionActivityViewModel>() {
             hideFinishButton()
             cpss.timer = timerText.text.toString()
             viewModel.saveCpss(cpss)
+            Navigator.withouthBundle().changeActivityFade(this, FinishActivity::class.java, true)
         }
 
         doctorImage.setOnClickListener {

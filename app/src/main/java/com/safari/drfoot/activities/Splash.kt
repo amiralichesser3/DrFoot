@@ -30,7 +30,7 @@ class Splash : AppCompatActivity() {
                         }
 
                         override fun onAnimationEnd(p0: Animator?) {
-                            Navigator.withouthBundle().changeActivity(this@Splash, RegisterActivity::class.java, true)
+                            Navigator.withouthBundle().changeActivity(this@Splash, IntroActivity::class.java, true)
                         }
 
                         override fun onAnimationStart(p0: Animator?) {

@@ -32,7 +32,6 @@ class RegisterActivity : InjectorActivity<RegisterViewModel>() {
                         supportFragmentManager, FragmentPagerItems.with(this)
                             .add("", SliderFragment1::class.java)
                             .add("", SliderFragment2::class.java)
-                            .add("", SliderFragment3::class.java)
                             .add("", SliderFragment4::class.java)
                             .create()
                     )

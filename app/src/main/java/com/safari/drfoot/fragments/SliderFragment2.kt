@@ -13,6 +13,8 @@ import com.safari.drfoot.entities.Me
 import com.safari.drfoot.utility.InjectorFragment
 import com.safari.drfoot.viewmodels.RegisterViewModel
 import kotlinx.android.synthetic.main.fragment_slider2.*
+import kotlinx.android.synthetic.main.fragment_slider2.email
+import kotlinx.android.synthetic.main.fragment_slider3.*
 
 class SliderFragment2 : InjectorFragment<RegisterViewModel>() {
 
@@ -40,6 +42,10 @@ class SliderFragment2 : InjectorFragment<RegisterViewModel>() {
             if (name.text.toString() != me?.name) {
                 name.setText(me?.name)
             }
+
+            if (email.text.toString() != me?.email) {
+                email.setText(me?.email)
+            }
         })
 
         name.addTextChangedListener(object: TextWatcher   {
@@ -55,7 +61,21 @@ class SliderFragment2 : InjectorFragment<RegisterViewModel>() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
+        })
 
+        email.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                me?.email = email.text.toString()
+                viewModel.save(me)
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
         })
     }
 

@@ -88,5 +88,10 @@ internal abstract class ViewModelModule {
     internal abstract fun bindManagementFragmentViewModel(managementFragmentViewModel: ManagementFragmentViewModel): ViewModel
 
     @Binds
+    @IntoMap
+    @ViewModelKey(FinishActivityViewModel::class)
+    internal abstract fun bindFinishActivityViewModel(finishActivityViewModel: FinishActivityViewModel): ViewModel
+
+    @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

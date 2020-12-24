@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            tools:context=".activities.FinishActivity">
+
+        <ImageView
+                android:layout_margin="6dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/avatarImageView"/>
+        <LinearLayout
+                android:layout_marginTop="4dp"
+                android:id="@+id/coinFrame"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/coin24"/>
+            <android.support.v7.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/coinTextView"
+                    android:textStyle="italic"
+                    android:textSize="@dimen/smalltext"
+                    android:textColor="@color/colorPrimary"/>
+        </LinearLayout>
+        <LinearLayout
+                android:layout_marginTop="4dp"
+                android:id="@+id/timerFrame"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/timer"/>
+            <android.support.v7.widget.AppCompatTextView
+                    android:layout_marginLeft="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/timerTextView"
+                    android:textStyle="italic"
+                    android:textSize="@dimen/smalltext"
+                    android:textColor="@color/colorPrimary"/>
+        </LinearLayout>
+        <TextView
+                android:layout_marginTop="@dimen/bigmargin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/bigtext"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"
+                android:text="Stage Cleared!"/>
+    </LinearLayout>
+    <ImageView
+            android:layout_gravity="top"
+            android:src="@drawable/confetti"
+            android:scaleType="fitXY"
+            android:id="@+id/viewKonfetti"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+</FrameLayout>
